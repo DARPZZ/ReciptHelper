@@ -12,3 +12,17 @@ export async function OpretBruger(formData:any) {
       });
       return response
 }
+export async function LogUserIn(formData:any) {
+  const response = await fetch("http://localhost:5084/api/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        Email: formData.Email,
+        adgangskode: formData.adgangskode,
+      }),
+    });
+    return response
+}

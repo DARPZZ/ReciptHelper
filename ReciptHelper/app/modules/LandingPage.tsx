@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@remix-run/react";
 function LandingPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="h-full bg-gray-50">
       <section
         className="bg-cover bg-center"
         style={{
