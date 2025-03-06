@@ -4,22 +4,26 @@ import GetReceiptByEmail from "~/helpers/api/reciptapi";
 function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
   useEffect(() => {
-    const fetchScammers = async () => {
+    const fetchReceipts = async () => {
       try {
-        const response = await GetReceiptByEmail("ralle@gmail.com");
+        let email = sessionStorage.getItem('email')
+        if (email != null)
+        {
+          const response = await GetReceiptByEmail(email);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+  
+          const data: reciptinterface[] = await response.json();
+          setReceipts(data);
         }
-
-        const data: reciptinterface[] = await response.json();
-        setReceipts(data);
       } catch (error) {
         console.error("Error fetching scammers:", error);
       }
     };
 
-    fetchScammers();
+    fetchReceipts();
   }, []);
   return (
     <table className="w-full   text-sm text-gray-500 dark:text-gray-400">
@@ -63,7 +67,7 @@ function ReceiptTable() {
                 {reciptinterface.pris}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                <a target="_blank" href={"https://www.google.dk/"} >Se Kvittering</a>
+                <a target="_blank" href={reciptinterface.emailLink} >Se Kvittering</a>
               </th>
 
               
@@ -76,7 +80,7 @@ function ReceiptTable() {
               className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
             >
               Vi har ikke nogle kviteringer til dig.
-            </td>
+            </td> 
           </tr>
         )}
       </tbody>

@@ -1,6 +1,6 @@
 import { useNavigate } from "@remix-run/react";
 import React from "react";
-import ReceiptTable from "~/modules/receiptTable";
+import ReceiptTable from "~/modules/ReceiptTable";
 function Dashboard() {
   const navigate = useNavigate();
   return (

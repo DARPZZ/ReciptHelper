@@ -23,7 +23,13 @@ function Login() {
     e.preventDefault();
 
     const response = await LogUserIn(formData);
-    if(response.status ==200){navigate("/dashboard")}
+    var data = await response.json
+    console.log("Response Data:", data);
+    if(response.status ==200)
+    {
+       sessionStorage.setItem("email",formData.Email );
+      navigate("/dashboard")
+    }
     else if(response.status == 401)
     {
       SetcorrectInformation(false);
