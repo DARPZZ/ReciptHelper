@@ -1,7 +1,8 @@
 export default interface IRecipt{
-    købsDato : Date
-    slutDato : Date
+    købsDato : string
+    slutDato : string
     emailLink:string
     produktNavn:string
+    firma:string
     pris:number
 }

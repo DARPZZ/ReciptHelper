@@ -3,27 +3,27 @@ import reciptinterface from "../interfaces/reciptinterface";
 import GetReceiptByEmail from "~/helpers/api/reciptapi";
 function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
-  useEffect(() => {
-    const fetchReceipts = async () => {
-      try {
-        let email = sessionStorage.getItem('email')
-        if (email != null)
-        {
-          const response = await GetReceiptByEmail(email);
+  const fetchReceipts = async () => {
+    try {
+      let email = sessionStorage.getItem('email')
+      if (email != null)
+      {
+        const response = await GetReceiptByEmail(email);
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-  
-          const data: reciptinterface[] = await response.json();
-          setReceipts(data);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      } catch (error) {
-        console.error("Error fetching scammers:", error);
-      }
-    };
 
-    fetchReceipts();
+        const data: reciptinterface[] = await response.json();
+        setReceipts(data);
+      }
+    } catch (error) {
+      console.error("Error fetching scammers:", error);
+    }
+  };
+  useEffect(() => {
+    fetchReceipts()
+
   }, []);
   return (
     <table className="w-full   text-sm text-gray-500 dark:text-gray-400">
@@ -35,12 +35,14 @@ function ReceiptTable() {
           <th scope="col" className="px-6 py-3">
             Slut dato
           </th>
-
           <th scope="col" className="px-6 py-3">
             Produkt Navn
           </th>
           <th scope="col" className="px-6 py-3">
             Pris
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Firma
           </th>
           <th scope="col" className="px-6 py-3">
             Email Link
@@ -55,10 +57,10 @@ function ReceiptTable() {
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
             >
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                {reciptinterface.købsDato.toString()}
+                {reciptinterface.købsDato. split("T")[0]}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                {reciptinterface.slutDato.toString()}
+                {reciptinterface.slutDato.split("T")[0]}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
                 {reciptinterface.produktNavn}
@@ -67,7 +69,10 @@ function ReceiptTable() {
                 {reciptinterface.pris}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                <a target="_blank" href={reciptinterface.emailLink} >Se Kvittering</a>
+                {reciptinterface.firma}
+              </th>
+              <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                <a target="_blank" rel="noopener noreferrer" href={reciptinterface.emailLink} >Se Kvittering</a>
               </th>
 
               
