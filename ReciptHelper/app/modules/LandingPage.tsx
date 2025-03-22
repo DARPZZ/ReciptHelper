@@ -13,16 +13,17 @@ function LandingPage() {
         <div className="bg-black bg-opacity-50 h-dvh">
           <div className="container mx-auto px-6 py-32 text-center">
             <h1 className="text-5xl font-bold text-white">
-              Store Your Receipts in One Place
+              Opbevar dine kvitteringer ét sted
             </h1>
             <p className="mt-6 text-xl text-gray-300">
-              Organize, manage, and access your receipts with ease.
+              Organisér, administrér og få adgang til dine kvitteringer med
+              lethed.
             </p>
             <Link
               to="signup"
               className="mt-8 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg"
             >
-                 Opret bruger
+              Opret bruger
             </Link>
           </div>
         </div>

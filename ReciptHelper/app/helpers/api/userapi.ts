@@ -1,5 +1,7 @@
+import api from "../api";
+const usapi = "user"
 export async function OpretBruger(formData:any) {
-    const response = await fetch("http://localhost:5084/api/user/create", {
+    const response = await fetch(`${api}/${usapi}/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -13,7 +15,7 @@ export async function OpretBruger(formData:any) {
       return response
 }
 export async function LogUserIn(formData:any) {
-  const response = await fetch("http://localhost:5084/api/user/login", {
+  const response = await fetch(`${api}/${usapi}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

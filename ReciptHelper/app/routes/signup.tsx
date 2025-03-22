@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "@remix-run/react";
 import { OpretBruger } from "~/helpers/api/userapi";
-function signup() {
+function Signup() {
   const [formData, setFormData] = useState({
     Email: "",
     adgangskode: "",
@@ -26,12 +26,16 @@ function signup() {
     }
   };
   return (
-    <div className=" w-full min-h-dvh bg-black bg-opacity-50">
+    <div className=" w-full items-center flex justify-center flex-col h-full bg-black bg-opacity-50">
       <div className=" w-full text-center">
         <h1 className=" pt-5 text-white text-2xl font-bold">Opret en bruger</h1>
       </div>
-      <div className="w-full pt-2 items-center flex justify-center">
-        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+      <div className="w-full pt-2 items-center flex flex-col justify-center">
+        <form
+          className="space-y-4 md:space-y-6 bg-slate-50 p-5 rounded-2xl"
+          onSubmit={handleSubmit}
+        >
+          <div className="font-bold">Opret Bruger</div>
           <div>
             <label
               htmlFor="email"
@@ -120,4 +124,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

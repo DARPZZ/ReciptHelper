@@ -129,16 +129,18 @@ function OpretKvittering() {
                   onChange={handleChange}
                 />
               </section>
-              <section className=" pt-6">
+              
+            </div>
+            
+          </div>
+          <section >
                 <button
                   type="submit"
-                  className="w-full font-bold text-white text-xl hover:bg-green-800 h-10 bg-green-600  rounded-xl "
+                  className="w-full justify-center items-center flex font-bold text-white text-xl hover:bg-green-800 h-10 bg-green-600  rounded-xl "
                 >
                   Opret kvittering
                 </button>
               </section>
-            </div>
-          </div>
         </form>
       </div>
     </div>

@@ -3,7 +3,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { LogUserIn } from "~/helpers/api/userapi";
 function Login() {
   const navigate = useNavigate();
-  const [correctInformation,SetcorrectInformation] = useState(false)
+  const [correctInformation,SetcorrectInformation] = useState(true)
   const [formData, setFormData] = useState({
     Email: "",
     adgangskode: "",
@@ -27,10 +27,10 @@ function Login() {
     console.log("Response Data:", data);
     if(response.status ==200)
     {
-       sessionStorage.setItem("email",formData.Email );
+      sessionStorage.setItem("email",formData.Email );
       navigate("/dashboard")
     }
-    else if(response.status == 401)
+    else if(response.status == 400)
     {
       SetcorrectInformation(false);
     }
@@ -57,7 +57,7 @@ function Login() {
                 name="Email"
                 id="Email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@company.com"
+                
                 value={formData.Email}
                 onChange={handleChange}
 
@@ -80,6 +80,11 @@ function Login() {
                 onChange={handleChange}
               />
             </div>
+            {correctInformation == false && (
+            <div className="w-full">
+              <h1 className="text-center font-bold text-red-600">Forkert adgangskode eller email</h1>
+            </div>
+            )}
             <div className="flex items-center justify-between">
               <div className="flex items-start"></div>
               <a

@@ -1,5 +1,6 @@
+import api from "../api";
 export default async function GetReceiptByEmail(email: string) {
-    const response = await fetch(`http://localhost:5084/api/recipt/get/by/email?email=${email}`, {
+    const response = await fetch(`${api}/recipt/get/by/email?email=${email}`, {
         method: 'GET',
         credentials: 'include',
     });
@@ -7,7 +8,7 @@ export default async function GetReceiptByEmail(email: string) {
 }
 
 export async function CreateRecipt(formData:any) {
-    const response = await fetch("http://localhost:5084/api/recipt/create", {
+    const response = await fetch(`${api}/recipt/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
