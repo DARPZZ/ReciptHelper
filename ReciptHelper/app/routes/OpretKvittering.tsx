@@ -6,45 +6,43 @@ import { CreateRecipt } from "~/helpers/api/reciptapi";
 function OpretKvittering() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    købsDato:"",
+    købsDato: "",
     slutDato: "",
     email: "",
     emailLink: "",
     produktNavn: "",
     pris: 0,
-    firmaNavnToCheck :""
+    firmaNavnToCheck: "",
   });
-  
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-        
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-
       formData.købsDato = selectedDate;
       const date = new Date(selectedDate);
       date.setFullYear(date.getFullYear() + 2);
-      const formattedDate = `${String(date.getFullYear()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getDate()}`;
+      const formattedDate = `${String(date.getFullYear()).padStart(
+        2,
+        "0"
+      )}-${String(date.getMonth() + 1).padStart(2, "0")}-${date.getDate()}`;
       formData.slutDato = formattedDate;
-      let email = sessionStorage.getItem('email')
-      if (email != null)
-      {
+      let email = sessionStorage.getItem("email");
+      if (email != null) {
         formData.email = email;
       }
-      
+
       const response = await CreateRecipt(formData);
-      if (response.ok)
-      {
-        navigate("/dashboard")
+      if (response.ok) {
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -52,16 +50,15 @@ function OpretKvittering() {
     }
   };
 
-
   const [selectedDate, setSelectedDate] = useState("");
   const getDatePlusTwoYears = () => {
-    console.log("Selected Date:", selectedDate);
     if (!selectedDate) return "";
     const date = new Date(selectedDate);
     date.setFullYear(date.getFullYear() + 2);
-    const formattedDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`;
+    const formattedDate = `${String(date.getDate()).padStart(2, "0")}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${date.getFullYear()}`;
     return formattedDate;
-    
   };
   return (
     <div className="flex bg-gray-800  flex-col h-full w-full">
@@ -69,7 +66,10 @@ function OpretKvittering() {
         Her har du muligheden for at oprette en ny kvittering
       </h1>
       <div className="flex items-center justify-center w-full h-full">
-        <form className="text-left p-3 rounded-xl bg-slate-200" onSubmit={handleSubmit}>
+        <form
+          className="text-left p-3 rounded-xl bg-slate-200"
+          onSubmit={handleSubmit}
+        >
           <div className="flex flex-row gap-x-8">
             <div className="flex flex-col">
               <section className="pb-6">
@@ -77,8 +77,6 @@ function OpretKvittering() {
                 <CustomDatePicker
                   selectedDate={selectedDate}
                   setSelectedDate={setSelectedDate}
-                  
-                  
                 />
               </section>
               <section className="pb-6">
@@ -135,18 +133,16 @@ function OpretKvittering() {
                   onChange={handleChange}
                 />
               </section>
-              
             </div>
-            
           </div>
-          <section >
-                <button
-                  type="submit"
-                  className="w-full justify-center items-center flex font-bold text-white text-xl hover:bg-green-800 h-10 bg-green-600  rounded-xl "
-                >
-                  Opret kvittering
-                </button>
-              </section>
+          <section>
+            <button
+              type="submit"
+              className="w-full justify-center items-center flex font-bold text-white text-xl hover:bg-green-800 h-10 bg-green-600  rounded-xl "
+            >
+              Opret kvittering
+            </button>
+          </section>
         </form>
       </div>
     </div>

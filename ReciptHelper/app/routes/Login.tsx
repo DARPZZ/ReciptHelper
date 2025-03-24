@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "@remix-run/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { LogUserIn } from "~/helpers/api/userapi";
+
 function Login() {
+  
   const navigate = useNavigate();
   const [correctInformation,SetcorrectInformation] = useState(true)
   const [formData, setFormData] = useState({
@@ -24,7 +26,6 @@ function Login() {
 
     const response = await LogUserIn(formData);
     var data = await response.json
-    console.log("Response Data:", data);
     if(response.status ==200)
     {
       sessionStorage.setItem("email",formData.Email );

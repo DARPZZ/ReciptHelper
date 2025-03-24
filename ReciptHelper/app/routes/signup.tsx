@@ -19,7 +19,6 @@ function Signup() {
 
     try {
       const response = await OpretBruger(formData);
-      console.warn(response);
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Noget gik galt. Prøv igen.");
