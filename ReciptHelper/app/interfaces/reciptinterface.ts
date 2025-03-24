@@ -1,4 +1,5 @@
 export default interface IRecipt{
+    reciptID : number
     købsDato : string
     slutDato : string
     emailLink:string

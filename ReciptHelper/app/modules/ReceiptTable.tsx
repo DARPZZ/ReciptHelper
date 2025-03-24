@@ -5,9 +5,8 @@ function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
   const fetchReceipts = async () => {
     try {
-      let email = sessionStorage.getItem('email')
-      if (email != null)
-      {
+      let email = sessionStorage.getItem("email");
+      if (email != null) {
         const response = await GetReceiptByEmail(email);
 
         if (!response.ok) {
@@ -22,8 +21,7 @@ function ReceiptTable() {
     }
   };
   useEffect(() => {
-    fetchReceipts()
-
+    fetchReceipts();
   }, []);
   return (
     <table className="w-full   text-sm text-gray-500 dark:text-gray-400">
@@ -53,14 +51,22 @@ function ReceiptTable() {
         {receipts.length > 0 ? (
           receipts.map((reciptinterface) => (
             <tr
-              key={reciptinterface.emailLink}
+              key={reciptinterface.reciptID}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
             >
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                {reciptinterface.købsDato. split("T")[0]}
+                {reciptinterface.købsDato
+                  .split("T")[0]
+                  .split("-")
+                  .reverse()
+                  .join("-")}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                {reciptinterface.slutDato.split("T")[0]}
+                {reciptinterface.slutDato
+                  .split("T")[0]
+                  .split("-")
+                  .reverse()
+                  .join("-")}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
                 {reciptinterface.produktNavn}
@@ -72,10 +78,14 @@ function ReceiptTable() {
                 {reciptinterface.firma}
               </th>
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                <a target="_blank" rel="noopener noreferrer" href={reciptinterface.emailLink} >Se Kvittering</a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={reciptinterface.emailLink}
+                >
+                  Se Kvittering
+                </a>
               </th>
-
-              
             </tr>
           ))
         ) : (
@@ -85,7 +95,7 @@ function ReceiptTable() {
               className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
             >
               Vi har ikke nogle kviteringer til dig.
-            </td> 
+            </td>
           </tr>
         )}
       </tbody>

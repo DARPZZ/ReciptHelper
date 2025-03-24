@@ -26,7 +26,7 @@ function Signup() {
     }
   };
   return (
-    <div className=" w-full items-center flex justify-center flex-col h-full bg-black bg-opacity-50">
+    <div className=" w-full items-center flex justify-center flex-col h-full  dark:bg-gray-900 ">
       <div className=" w-full text-center">
         <h1 className=" pt-5 text-white text-2xl font-bold">Opret en bruger</h1>
       </div>
@@ -91,7 +91,7 @@ function Signup() {
                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
               />
             </div>
-            <div className=" text-white ml-3 text-sm">
+            <div className=" text-black ml-3 text-sm">
               <label htmlFor="terms" className="font-light  dark:text-gray-300">
                 Jeg acceptere{" "}
                 <Link
