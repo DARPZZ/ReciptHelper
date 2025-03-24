@@ -13,6 +13,7 @@ function Navbar() {
   function GetCurrentPath() {
     const currentPath = window.location.pathname;
     currentPath == "/" ? setIsOnRootPath(true) : setIsOnRootPath(false);
+    
   }
 
   function LogUserOut() {
@@ -25,7 +26,7 @@ function Navbar() {
         {isUserLoggedIn ? (
           <button
             className="w-1/3 px-6 py-4 text-xl font-bold "
-            onClick={() => navigate("dashboard")}
+            onClick={() => navigate("Dashboard")}
           >
             Recipt Helper
           </button>
@@ -41,7 +42,10 @@ function Navbar() {
       <div className="items-center w-full space-x-10  justify-end flex px-6 py-4">
         {isUserLoggedIn ? (
           <div className="space-x-10">
-            <button className=" hover:text-gray-800">Settings</button>
+            <button
+             className=" hover:text-gray-800"
+             onClick={()=> navigate("Settings")}
+             >Settings</button>
             <button
               onClick={() => LogUserOut()}
               className=" hover:text-gray-800"

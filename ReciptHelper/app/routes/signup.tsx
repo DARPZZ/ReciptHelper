@@ -26,9 +26,6 @@ function Signup() {
   };
   return (
     <div className=" w-full items-center flex justify-center flex-col h-full  dark:bg-gray-900 ">
-      <div className=" w-full text-center">
-        <h1 className=" pt-5 text-white text-2xl font-bold">Opret en bruger</h1>
-      </div>
       <div className="w-full pt-2 items-center flex flex-col justify-center">
         <form
           className="space-y-4 md:space-y-6 bg-slate-50 p-5 rounded-2xl"
@@ -63,6 +60,7 @@ function Signup() {
               name="adgangskode"
               id="adgangskode"
               placeholder="••••••••"
+              autoComplete="on"
               value={formData.adgangskode}
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

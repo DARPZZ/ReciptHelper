@@ -6,8 +6,7 @@ function LandingPage() {
       <section
         className="bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://source.unsplash.com/1600x900/?receipt')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5')",
         }}
       >
         <div className="bg-black bg-opacity-50 h-dvh">

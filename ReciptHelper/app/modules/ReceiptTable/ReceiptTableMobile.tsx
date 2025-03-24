@@ -2,7 +2,7 @@ import React from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 function ReceiptTableMobile({ receipts }: { receipts: any }) {
   return (
-    <div className="block md:hidden">
+    <div className="block md:hidden overflow-y-auto">
       {receipts.map((reciptinterface: reciptinterface) => (
         <div
           key={reciptinterface.reciptID}
@@ -33,7 +33,12 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
           <p>
             <strong>Firma:</strong> {reciptinterface.firma}
           </p>
-          <a href={reciptinterface.emailLink} className="text-blue-500">
+          <a
+            href={reciptinterface.emailLink}
+            className="text-blue-500"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Se Kvittering
           </a>
         </div>

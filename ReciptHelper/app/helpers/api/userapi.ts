@@ -26,5 +26,6 @@ export async function LogUserIn(formData:any) {
         adgangskode: formData.adgangskode,
       }),
     });
+    
     return response
 }
