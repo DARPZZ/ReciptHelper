@@ -6,7 +6,7 @@ import ReceiptTableMobile from "./ReceiptTableMobile";
 
 function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
-  const [filtredScammers, setFiltredScammers] = useState<reciptinterface[]>([]);
+  const [filtredReceipts, setFiltredReceipts] = useState<reciptinterface[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const fetchReceipts = async () => {
     try {
@@ -20,17 +20,17 @@ function ReceiptTable() {
 
         const data: reciptinterface[] = await response.json();
         setReceipts(data);
-        setFiltredScammers(data);
+        setFiltredReceipts(data);
       }
     } catch (error) {
       console.error("Error fetching scammers:", error);
     }
   };
   useEffect(() => {
-    const filteredScammers = receipts.filter((receipts) =>
+    const filteredrecipt = receipts.filter((receipts) =>
       receipts.produktNavn.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFiltredScammers(filteredScammers);
+    setFiltredReceipts(filteredrecipt);
   }, [searchTerm]);
 
   useEffect(() => {
@@ -81,8 +81,8 @@ function ReceiptTable() {
           </form>
         </div>
       </div>
-      <ReceiptTablePc receipts={filtredScammers}></ReceiptTablePc>
-      <ReceiptTableMobile receipts={filtredScammers}></ReceiptTableMobile>
+      <ReceiptTablePc receipts={filtredReceipts}></ReceiptTablePc>
+      <ReceiptTableMobile receipts={filtredReceipts}></ReceiptTableMobile>
     </div>
   );
 }
