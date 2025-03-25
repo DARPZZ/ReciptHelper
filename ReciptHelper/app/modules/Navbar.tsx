@@ -12,7 +12,7 @@ function Navbar() {
   });
   function GetCurrentPath() {
     const currentPath = window.location.pathname;
-    currentPath == "/" ? setIsOnRootPath(true) : setIsOnRootPath(false);
+    currentPath == "/ReciptHelper/" ? setIsOnRootPath(true) : setIsOnRootPath(false);
     
   }
 
