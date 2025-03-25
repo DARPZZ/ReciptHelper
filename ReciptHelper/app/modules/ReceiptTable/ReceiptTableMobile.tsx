@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 function ReceiptTableMobile({ receipts }: { receipts: any }) {
+  const [correctInformation, SetcorrectInformation] = useState(false);
+  useEffect(() => {
+    SetcorrectInformation(receipts.length > 0);
+  }, [receipts]);
   return (
     <div className="block 2xl:hidden px-2 pt-2 overflow-y-auto">
+      {!correctInformation && (
+        <div>
+          <h1 className=" text-2xl font-bold">
+          Vi har ikke nogle kviteringer til dig.
+          </h1>
+        </div>
+      )}
       {receipts.map((reciptinterface: reciptinterface) => (
         <div
-        
           key={reciptinterface.reciptID}
           className="bg-white p-4 ring-2  rounded-lg shadow-md mb-4"
         >

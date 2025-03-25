@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import reciptinterface from '../../interfaces/reciptinterface'
-function ReceiptTablePc({ receipts,  }: { receipts: any }) {
+function ReceiptTablePc({ receipts  }: { receipts: any }) {
 
   return (
     <table className="w-full hidden 2xl:table table-auto   text-sm ">
