@@ -2,6 +2,7 @@
   "name": "recipthelper",
   "private": true,
   "sideEffects": false,
+  "homepage": "htpps://DARPZZ.github.io/ReciptHelper/",
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
