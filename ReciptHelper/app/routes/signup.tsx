@@ -32,7 +32,7 @@ function Signup() {
     <div className=" w-full items-center flex justify-center flex-col h-full  dark:bg-gray-900 ">
       <div className="w-full pt-2 items-center flex flex-col justify-center">
         <form
-          className="space-y-4 md:space-y-6 bg-slate-50 p-5 rounded-2xl"
+          className="space-y-4 md:space-y-6 bg-slate-700 p-5 rounded-2xl"
           onSubmit={handleSubmit}
         >
           <div className="font-bold">Opret Bruger</div>

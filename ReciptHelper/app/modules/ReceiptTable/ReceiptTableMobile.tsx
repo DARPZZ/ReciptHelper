@@ -6,7 +6,7 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
     SetcorrectInformation(receipts.length > 0);
   }, [receipts]);
   return (
-    <div className="block 2xl:hidden px-2 pt-2 overflow-y-auto">
+    <div className="block 2xl:hidden  px-2 pt-2 overflow-y-auto">
       {!correctInformation && (
         <div>
           <h1 className=" text-2xl font-bold">
@@ -17,7 +17,7 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
       {receipts.map((reciptinterface: reciptinterface) => (
         <div
           key={reciptinterface.reciptID}
-          className="bg-white p-4 ring-2  rounded-lg shadow-md mb-4"
+          className="bg-slate p-4 ring-2  rounded-lg shadow-md mb-4"
         >
           <p>
             <strong>Købsdato:</strong>{" "}
