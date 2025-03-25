@@ -33,7 +33,7 @@ jobs:
           uses: actions/checkout@v4
         - name: install & build
           run: |
-              cd
+              cd ReciptHelper
               npm ci
               npm run build
         - name: Setup Pages
@@ -42,8 +42,7 @@ jobs:
           uses: actions/upload-pages-artifact@v3
           with:
             # Upload entire repository
-            path: './ReciptHelper/build/client'
+            path: './build/client'
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v4
-
