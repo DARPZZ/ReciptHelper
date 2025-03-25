@@ -5,9 +5,14 @@
 //Pub dev
 export default "https://srv589522.hstgr.cloud/api"
 
-export const CreateCookie =()=>{
-    const recipthelper = "recipthelper"
-
-    document.cookie = `helper=; path=/; max-age=0; samesite=Lax; secure`;
-    window.location.reload();
-  }
+export function decode()
+{
+    let decodedString = ""
+    var token = sessionStorage.getItem("to")
+    if(token)
+    {
+        decodedString = atob(token);
+        console.warn(decodedString)
+    }
+    return decodedString;
+}
