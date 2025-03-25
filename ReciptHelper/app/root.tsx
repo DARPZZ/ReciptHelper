@@ -32,9 +32,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="h-screen flex flex-col">
+      <body>
         <div>
-          <Navbar />
+          <Navbar/>
         </div>
         <main className="flex-1">{children}</main>
         <ScrollRestoration />

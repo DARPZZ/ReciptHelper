@@ -1,7 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "@remix-run/react";
+import { Link, useNavigate } from "@remix-run/react";
 import { OpretBruger } from "~/helpers/api/userapi";
 function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Email: "",
     adgangskode: "",
@@ -19,6 +20,9 @@ function Signup() {
 
     try {
       const response = await OpretBruger(formData);
+      if (response.ok) {
+        navigate("/Login")
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Noget gik galt. Prøv igen.");

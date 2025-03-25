@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import reciptinterface from '../../interfaces/reciptinterface'
-function ReceiptTablePc({ receipts }: { receipts: any }) {
+function ReceiptTablePc({ receipts,  }: { receipts: any }) {
 
   return (
-    <table className="w-full hidden md:table   text-sm text-gray-500 dark:text-gray-400">
+    <table className="w-full hidden 2xl:table table-auto   text-sm ">
     <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" className="px-6  py-3">

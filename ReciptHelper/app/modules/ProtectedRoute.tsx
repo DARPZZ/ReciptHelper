@@ -5,7 +5,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const isAuthenticated = Boolean(sessionStorage.getItem("email"));
   
   if (!isAuthenticated) {
-    return <Navigate to="/UnAuthorized" replace />;
+    return <Navigate to="/" replace />;
   }
   
   return <>{children}</>;

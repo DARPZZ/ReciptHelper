@@ -21,7 +21,7 @@ function Navbar() {
     navigate("/");
   }
   return (
-    <div className="grid font-bold text-xl grid-cols-2 bg-gradient-to-r text-white from-blue-600 via-green-500 to-indigo-400  ">
+    <div className="grid font-bold w-full text-xl grid-cols-2 bg-gradient-to-r text-white from-blue-600 via-green-500 to-indigo-400  ">
       <div>
         {isUserLoggedIn ? (
           <button
@@ -41,7 +41,7 @@ function Navbar() {
       </div>
       <div className="items-center w-full space-x-10  justify-end flex px-6 py-4">
         {isUserLoggedIn ? (
-          <div className="space-x-10">
+          <div className="space-x-10 flex flex-row">
             <button
              className=" hover:text-gray-800"
              onClick={()=> navigate("Settings")}
