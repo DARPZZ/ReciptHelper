@@ -28,7 +28,7 @@ function Login() {
     if (response.status == 200) {
       sessionStorage.setItem("email", formData.Email);
       navigate("/Dashboard");
-    } else if (response.status == 400) {
+    } else if (response.status == 400 || response.status == 401) {
       SetcorrectInformation(false);
     }
   };
