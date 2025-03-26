@@ -62,26 +62,26 @@ function OpretKvittering() {
   };
   return (
     <ProtectedRoute>
-      <div className="flex bg-white flex-col h-full w-full">
-        <h1 className="text-2xl text-black  font-sans font-bold text-center mt-5">
+      <div className="flex  bg-white dark:bg-black flex-col h-full w-full">
+        <h1 className="text-3xl  text-black dark:text-white  font-sans font-bold text-center mt-5">
           Her har du muligheden for at oprette en ny kvittering
         </h1>
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-center h-full w-full justify-center flex-col">
           <form
-            className="text-left p-3 rounded-xl bg-slate-200"
+            className="text-left p-3 font-bold rounded-xl bg-slate-200 dark:bg-gray-700 dark:text-white"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-row gap-x-8">
               <div className="flex flex-col">
                 <section className="pb-6">
-                  <h1>Købs datoen for produktet</h1>
+                  <h1>Købs dato</h1>
                   <CustomDatePicker
                     selectedDate={selectedDate}
                     setSelectedDate={setSelectedDate}
                   />
                 </section>
                 <section className="pb-6">
-                  <h1>Sidste reklamentaions dag</h1>
+                  <h1>Sidste reklamentaion</h1>
                   <input
                     type="text"
                     readOnly

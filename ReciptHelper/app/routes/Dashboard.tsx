@@ -23,6 +23,7 @@ function Dashboard() {
             </button>
             <div className="w-full flex  justify-center"></div>
             <div className="pt-5">
+
               <ReceiptTable />
             </div>
           </div>
