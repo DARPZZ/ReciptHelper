@@ -39,9 +39,9 @@ function Navbar() {
           </button>
         )}
       </div>
-      <div className="items-center w-full space-x-10  justify-end flex px-6 py-4">
+      <div className="items-center w-full space-x-5  justify-end flex px-6 py-4">
         {isUserLoggedIn ? (
-          <div className="space-x-10 flex flex-row">
+          <div className="space-x-5 flex flex-row">
             <button
              className=" hover:text-gray-800"
              onClick={()=> navigate("Settings")}
@@ -62,7 +62,7 @@ function Navbar() {
           </button>
         )}
         {isOnRootPath == true && (
-          <div className="space-x-10">
+          <div className="space-x-5 flex flex-row">
             <button
               onClick={() => scrollToID("About")}
               className=" hover:text-gray-800"
