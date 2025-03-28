@@ -55,15 +55,22 @@ function ReceiptTablePc({ receipts }: { receipts: any }) {
               <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
                 {reciptinterface.firma}
               </th>
-              <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={reciptinterface.emailLink}
-                >
-                  Se Kvittering
-                </a>
-              </th>
+
+              {reciptinterface.emailLink != "" ? (
+                <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={reciptinterface.emailLink}
+                  >
+                    Se Kvittering
+                  </a>
+                </th>
+              ) : (
+                <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                  <h1>Intent link</h1>
+                </th>
+              )}
             </tr>
           ))
         ) : (
