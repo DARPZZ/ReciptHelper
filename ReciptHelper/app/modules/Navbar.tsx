@@ -67,13 +67,13 @@ function Navbar() {
               onClick={() => scrollToID("About")}
               className=" hover:text-gray-800"
             >
-              Omkring
+              About
             </button>
             <button
               onClick={() => scrollToID("Features")}
               className=" hover:text-gray-800"
             >
-              Funktioner
+              Features
             </button>
           </div>
         )}

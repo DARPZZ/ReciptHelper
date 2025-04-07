@@ -6,8 +6,7 @@ function LandingPage() {
       <section
         className="bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5')",
         }}
       >
         <div className="bg-black bg-opacity-50 h-dvh">
@@ -30,10 +29,10 @@ function LandingPage() {
       </section>
       <section className="container mx-auto px-6 py-16">
         <div id="Features" className="text-center">
-          <h2 className="text-3xl font-bold text-gray-800">Funktioner</h2>
+          <h2 className="text-3xl font-bold text-gray-800">Features</h2>
           <p className="mt-4 text-gray-600">
-            Opdag, hvordan vores platform kan hjælpe dig med at administrere
-            dine kvitteringer uden besvær.
+            Discover how our platform can help you manage your receipts
+            effortlessly.
           </p>
         </div>
         <div className="mt-12 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
@@ -48,10 +47,10 @@ function LandingPage() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-800 text-center">
-              Nem Upload
+              Easy Upload
             </h3>
             <p className="mt-2 text-gray-600 text-center">
-              Upload hurtigt kvitteringer med vores intuitive interface.
+              Quickly upload receipts with our intuitive interface.
             </p>
           </div>
           <div className="flex-1 bg-white p-6 rounded-lg shadow">
@@ -69,10 +68,10 @@ function LandingPage() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-800 text-center">
-              Organiseret Administration
+              Organized Management
             </h3>
             <p className="mt-2 text-gray-600 text-center">
-              Kategoriser kvitteringer for nem sporing og genfinding.
+              Categorize receipts for easy tracking and retrieval.
             </p>
           </div>
           <div className="flex-1 bg-white p-6 rounded-lg shadow">
@@ -86,10 +85,10 @@ function LandingPage() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-800 text-center">
-              Sikker Opbevaring
+              Secure Storage
             </h3>
             <p className="mt-2 text-gray-600 text-center">
-              Dine kvitteringer opbevares sikkert i skyen.
+              Your receipts are safely stored in the cloud.
             </p>
           </div>
         </div>
@@ -99,12 +98,12 @@ function LandingPage() {
           <div className="flex flex-col md:flex-row items-center">
             <div id="About" className="flex-1">
               <h2 className="text-3xl font-bold text-gray-800">
-                Om Recipt Helper
+                About Recipt Helper
               </h2>
               <p className="mt-4 text-gray-600">
-                Recipt Helper er designet til at forenkle den måde, du
-                administrerer dine kvitteringer på. Med en brugervenlig
-                grænseflade og sikker cloud-opbevaring.
+                Recipt Helper is designed to simplify the way you manage your
+                receipts. With an easy-to-use interface and secure cloud
+                storage.
               </p>
             </div>
           </div>
