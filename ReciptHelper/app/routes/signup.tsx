@@ -3,6 +3,8 @@ import { Link, useNavigate } from "@remix-run/react";
 import { OpretBruger } from "~/helpers/api/userapi";
 function Signup() {
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
+  const [showEkstraDiv, setShowEkstraDiv] = useState(false)
   const [formData, setFormData] = useState({
     Email: "",
     adgangskode: "",
@@ -10,18 +12,22 @@ function Signup() {
   });
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value,
     });
   };
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
+      !isChecked ? setShowEkstraDiv(true) : setShowEkstraDiv(false)
       const response = await OpretBruger(formData);
       if (response.ok) {
-        navigate("/Login")
+        navigate("/Login");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -82,6 +88,13 @@ function Signup() {
               />
             </div>
           </div>
+          {showEkstraDiv && (
+            <div>
+              <h1 className="text-red-400 font-bold">
+                Du mangler at acceptere Terms and Conditions
+              </h1>
+            </div>
+          )}
 
           <div className="flex items-start">
             <div className="flex items-center h-5">
@@ -89,6 +102,8 @@ function Signup() {
                 id="terms"
                 aria-describedby="terms"
                 type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
               />
             </div>
@@ -114,7 +129,7 @@ function Signup() {
             Har du allerde en konto?{" "}
             <Link
               to="/Login"
-              className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              className="font-medium text-primary-600 dark:text-white hover:underline dark:text-primary-500"
             >
               Login
             </Link>

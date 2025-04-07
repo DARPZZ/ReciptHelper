@@ -18,10 +18,11 @@ function Navbar() {
 
   function LogUserOut() {
     sessionStorage.removeItem("email");
+    localStorage.removeItem("to")
     navigate("/");
   }
   return (
-    <div className="grid font-bold w-full text-xl grid-cols-2 bg-gradient-to-r text-white from-blue-600 via-green-500 to-indigo-400  ">
+    <div className="grid font-bold w-full text-xl fixed z-50   grid-cols-2 bg-gradient-to-r text-white from-blue-600 via-green-500 to-indigo-400  ">
       <div>
         {isUserLoggedIn ? (
           <button
@@ -63,18 +64,19 @@ function Navbar() {
         )}
         {isOnRootPath == true && (
           <div className="space-x-5 flex flex-row">
+             <button
+              onClick={() => scrollToID("Features")}
+              className=" hover:text-gray-800"
+            >
+              Features
+            </button>
             <button
               onClick={() => scrollToID("About")}
               className=" hover:text-gray-800"
             >
               About
             </button>
-            <button
-              onClick={() => scrollToID("Features")}
-              className=" hover:text-gray-800"
-            >
-              Features
-            </button>
+           
           </div>
         )}
       </div>

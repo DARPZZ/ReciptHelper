@@ -7,7 +7,7 @@ function Dashboard() {
   const navigate = useNavigate();
   return (
     <ProtectedRoute>
-      <div className="w-full h-full">
+      <div className="w-full h-full mt-16">
         <div className=" flex justify-center">
           <div className=" w-full items-center flex flex-col">
             <h1 className="text-2xl font-bold pb-5 font-serif">
