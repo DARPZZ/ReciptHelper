@@ -27,7 +27,7 @@ function Login() {
     if (response.status == 200) {
       sessionStorage.setItem("email", formData.Email);
       const encodedToken = btoa(data.token);
-      sessionStorage.setItem("to", encodedToken)
+      localStorage.setItem("to", encodedToken)
       navigate("/Dashboard");
     } else if (response.status == 400 || response.status == 401) {
       SetcorrectInformation(false);
