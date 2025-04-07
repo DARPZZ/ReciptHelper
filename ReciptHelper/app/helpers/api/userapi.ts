@@ -1,3 +1,4 @@
+import { decode } from "../api";
 import api from "../api";
 const usapi = "user"
 export async function OpretBruger(formData:any) {
