@@ -1,3 +1,4 @@
+
 import { decode } from "../api";
 import api from "../api";
 const usapi = "user"
@@ -26,6 +27,19 @@ export async function LogUserIn(formData:any) {
         Email: formData.Email,
         adgangskode: formData.adgangskode,
       }),
+    });
+    
+    return response
+}
+
+
+export async function SetSettings(formData:any) {
+  const response = await fetch(`${api}/${usapi}/set/sletKvitteringer?email=${formData.email}&value=${formData.value}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
     });
     
     return response
