@@ -26,7 +26,7 @@ function Signup() {
     try {
       !isChecked ? setShowEkstraDiv(true) : setShowEkstraDiv(false)
       const response = await OpretBruger(formData);
-      if (response.ok) {
+      if (response.ok && isChecked) {
         navigate("/Login");
       }
     } catch (error) {
