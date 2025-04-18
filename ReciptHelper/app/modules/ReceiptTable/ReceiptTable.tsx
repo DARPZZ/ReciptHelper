@@ -10,7 +10,7 @@ function ReceiptTable() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const fetchReceipts = async () => {
     try {
-      let email = sessionStorage.getItem("email");
+      let email = localStorage.getItem("email");
       if (email != null) {
         const response = await GetReceiptByEmail(email);
 

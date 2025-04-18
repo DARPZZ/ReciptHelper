@@ -25,9 +25,7 @@ function Login() {
     const response = await LogUserIn(formData);
     var data = await response.json();
     if (response.status == 200) {
-      sessionStorage.setItem("email", formData.Email);
-      const encodedToken = btoa(data.token);
-      localStorage.setItem("to", encodedToken)
+      localStorage.setItem("email", formData.Email);
       navigate("/Dashboard");
     } else if (response.status == 400 || response.status == 401) {
       SetcorrectInformation(false);

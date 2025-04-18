@@ -35,7 +35,7 @@ function OpretKvittering() {
         "0"
       )}-${String(date.getMonth() + 1).padStart(2, "0")}-${date.getDate()}`;
       formData.slutDato = formattedDate;
-      let email = sessionStorage.getItem("email");
+      let email = localStorage.getItem("email");
       if (email != null) {
         formData.email = email;
       }
