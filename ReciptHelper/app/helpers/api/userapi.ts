@@ -33,14 +33,3 @@ export async function LogUserIn(formData:any) {
 }
 
 
-export async function SetSettings(formData:any) {
-  const response = await fetch(`${api}/${usapi}/set/sletKvitteringer?email=${formData.email}&value=${formData.value}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
-    
-    return response
-}

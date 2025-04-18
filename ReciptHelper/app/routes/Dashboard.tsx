@@ -1,10 +1,17 @@
 import { useNavigate } from "@remix-run/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReceiptTable from "~/modules/ReceiptTable/ReceiptTable";
 import ProtectedRoute from "~/modules/ProtectedRoute";
-
+import { SletKvit } from "~/helpers/api/reciptapi";
 function Dashboard() {
+ 
+  const [formData, setFormData] = useState({
+    email: "",
+  });
   const navigate = useNavigate();
+  useEffect(() => {
+    SletKvit(localStorage.getItem("email")||"");
+  },[]);
   return (
     <ProtectedRoute>
       <div className="w-full h-full mt-24 md:mt-16">

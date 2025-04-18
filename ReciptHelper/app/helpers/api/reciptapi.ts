@@ -32,3 +32,25 @@ export async function CreateRecipt(formData:any) {
       });
       return response
   }
+  export async function SetSettings(formData:any) {
+    const response = await fetch(`${api}/recipt/set/sletKvitteringer?email=${formData.email}&value=${formData.value}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      
+      return response
+  }
+  export async function SletKvit(email:string) {
+    const response = await fetch(`${api}/recipt/slet/kvitteringer?email=${email}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      
+      return response
+  }

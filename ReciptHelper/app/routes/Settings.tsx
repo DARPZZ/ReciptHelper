@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import ProtectedRoute from "~/modules/ProtectedRoute";
-import { SetSettings } from "~/helpers/api/userapi";
+import { SetSettings } from "~/helpers/api/reciptapi";
 function Settings() {
 const [automatiskSletning, setAutomatiksSletning] = useState(Boolean);
 const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const [formData, setFormData] = useState({
 async function skiftAutomatiskSletning() {
     automatiskSletning? setAutomatiksSletning(false) : setAutomatiksSletning(true);
     setFormData({
-      email : sessionStorage.getItem("email") || "",
+      email : localStorage.getItem("email") || "",
       value : automatiskSletning
       });
       

@@ -6,7 +6,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [isOnRootPath, setIsOnRootPath] = useState(true);
   useEffect(() => {
-    let email = sessionStorage.getItem("email");
+    let email = localStorage.getItem("email");
     email != null ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false);
     GetCurrentPath();
   });
@@ -17,8 +17,7 @@ function Navbar() {
   }
 
   function LogUserOut() {
-    sessionStorage.removeItem("email");
-    localStorage.removeItem("to")
+    localStorage.removeItem("email");
     navigate("/");
   }
   return (
