@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
-import GetReceiptByEmail from "~/helpers/api/reciptapi";
+import GetReceiptByEmail, { sletkvitEach } from "~/helpers/api/reciptapi";
 import ReceiptTablePc from "./ReceiptTablePc";
 import ReceiptTableMobile from "./ReceiptTableMobile";
 
@@ -10,22 +10,18 @@ function ReceiptTable() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const fetchReceipts = async () => {
     try {
-      let email = localStorage.getItem("email");
-      if (email != null) {
-        const response = await GetReceiptByEmail(email);
-
+        const response = await GetReceiptByEmail();
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data: reciptinterface[] = await response.json();
         setReceipts(data);
         setFiltredReceipts(data);
-      }
     } catch (error) {
       console.error("Error fetching scammers:", error);
     }
   };
+  
   useEffect(() => {
     const filteredrecipt = receipts.filter((receipts) =>
       receipts.produktNavn.toLowerCase().includes(searchTerm.toLowerCase())

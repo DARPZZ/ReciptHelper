@@ -25,7 +25,7 @@ function Login() {
     const response = await LogUserIn(formData);
     var data = await response.json();
     if (response.status == 200) {
-      localStorage.setItem("email", formData.Email);
+      sessionStorage.setItem("login", "true");
       navigate("/Dashboard");
     } else if (response.status == 400 || response.status == 401) {
       SetcorrectInformation(false);

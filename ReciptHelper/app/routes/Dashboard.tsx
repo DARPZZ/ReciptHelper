@@ -10,7 +10,7 @@ function Dashboard() {
   });
   const navigate = useNavigate();
   useEffect(() => {
-    SletKvit(localStorage.getItem("email")||"");
+    SletKvit();
   },[]);
   return (
     <ProtectedRoute>
