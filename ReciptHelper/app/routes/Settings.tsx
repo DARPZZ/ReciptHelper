@@ -31,8 +31,8 @@ async function skiftAutomatiskSletning() {
   return (
     <ProtectedRoute>
       <div className="w-full h-full flex flex-col justify-center items-center">
-        <div className="grid grid-cols-3 px-11">
-          <div className="flex flex-col ">
+        <div className="grid md:grid-cols-3 grid-cols-1 px-11">
+          <div className="flex p-4 flex-col border-solid border-4  rounded-lg border-blue-400 ">
             <h2>Slet automatik Kvitteringer efter 2 år </h2>
             <button
               onClick={skiftAutomatiskSletning}

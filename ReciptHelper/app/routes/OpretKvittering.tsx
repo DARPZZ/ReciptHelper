@@ -59,7 +59,7 @@ function OpretKvittering() {
   return (
     <ProtectedRoute>
       <div className="flex  bg-white dark:bg-black flex-col h-full w-full">
-        <h1 className="text-3xl  text-black dark:text-white  font-sans font-bold text-center mt-5">
+        <h1 className="text-3xl md:mt-28 text-black dark:text-white  font-sans font-bold text-center mt-36">
           Her har du muligheden for at oprette en ny kvittering
         </h1>
         <div className="flex items-center h-full w-full justify-center flex-col">

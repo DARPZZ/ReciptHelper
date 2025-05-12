@@ -1,6 +1,6 @@
 import IRecipt from '~/interfaces/reciptinterface';
 import {sletkvitEach} from '../../helpers/api/reciptapi'
-import { toast,ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 export default async function SletKvitteringPåId(id:number) {
     const response = await sletkvitEach(id);
     return response;
@@ -19,13 +19,13 @@ export default async function SletKvitteringPåId(id:number) {
       toast.success("Kvitteringen blev slettet", {
         position: "bottom-right",
 
-        autoClose: 1500,
+        autoClose: 2000,
         theme: "colored",
       });
     } catch (error: any) {
       toast.error(" Kunne ikke slette kvitteringen", {
         position: "bottom-right",
-        autoClose: 1500,
+        autoClose: 2000,
         theme: "colored",
       });
       console.error("Sletningsfejl:", error);

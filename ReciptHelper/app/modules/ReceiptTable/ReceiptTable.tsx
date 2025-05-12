@@ -3,6 +3,7 @@ import reciptinterface from "../../interfaces/reciptinterface";
 import GetReceiptByEmail, { sletkvitEach } from "~/helpers/api/reciptapi";
 import ReceiptTablePc from "./ReceiptTablePc";
 import ReceiptTableMobile from "./ReceiptTableMobile";
+import { ToastContainer } from "react-toastify";
 
 function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
@@ -34,6 +35,7 @@ function ReceiptTable() {
   }, []);
   return (
     <div className="w-full">
+       <ToastContainer position="bottom-right" theme="colored" />
       <div className=" flex justify-center w-full pb-5">
         <div className="pt-10 w-full md:w-4/5">
           <form
