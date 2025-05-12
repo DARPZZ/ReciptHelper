@@ -31,3 +31,16 @@ export async function LogUserIn(formData:any) {
 }
 
 
+export async function GetSettings() {
+  const response = await fetch(`${api}/${usapi}/settings`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    return response
+}
+
+
+
