@@ -1,12 +1,11 @@
 import api from "../api";
-import { decode } from "../api";
-export default async function GetReceiptByEmail(email: string) {
-    const response = await fetch(`${api}/recipt/get/by/email?email=${email}`, {
+
+export default async function GetReceiptByEmail() {
+    const response = await fetch(`${api}/recipt/get/by/email`, {
         method: 'GET',
         credentials: 'include',
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${decode()}`
           },
     });
     return response;
@@ -17,7 +16,6 @@ export async function CreateRecipt(formData:any) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${decode()}`
         },
         credentials: "include",
         body: JSON.stringify({
@@ -33,7 +31,7 @@ export async function CreateRecipt(formData:any) {
       return response
   }
   export async function SetSettings(formData:any) {
-    const response = await fetch(`${api}/recipt/set/sletKvitteringer?email=${formData.email}&value=${formData.value}`, {
+    const response = await fetch(`${api}/recipt/set/sletKvitteringer?value=${formData.value}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,8 +41,8 @@ export async function CreateRecipt(formData:any) {
       
       return response
   }
-  export async function SletKvit(email:string) {
-    const response = await fetch(`${api}/recipt/slet/kvitteringer?email=${email}`, {
+  export async function SletKvit() {
+    const response = await fetch(`${api}/recipt/slet/kvitteringer`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -52,5 +50,15 @@ export async function CreateRecipt(formData:any) {
         credentials: "include",
       });
       
+      return response
+  }
+  export async function sletkvitEach(id:any) {
+    const response = await fetch(`${api}/recipt/slet/kvitteringer/on/id?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       return response
   }

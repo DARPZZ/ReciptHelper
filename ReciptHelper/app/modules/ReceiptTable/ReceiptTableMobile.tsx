@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
+import SletKvitteringPåId from "./BaseRecipt";
 function ReceiptTableMobile({ receipts }: { receipts: any }) {
   const [correctInformation, SetcorrectInformation] = useState(false);
   useEffect(() => {
@@ -10,7 +11,7 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
       {!correctInformation && (
         <div>
           <h1 className=" text-2xl font-bold">
-          Vi har ikke nogle kviteringer til dig.
+            Vi har ikke nogle kviteringer til dig.
           </h1>
         </div>
       )}
@@ -52,6 +53,16 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
           >
             Se Kvittering
           </a>
+          <p className="pt-5">
+            <button
+              className="text-red-600"
+              onClick={() => {
+                SletKvitteringPåId(reciptinterface.reciptID);
+              }}
+            >
+              Slet kvittering
+            </button>
+          </p>
         </div>
       ))}
     </div>
