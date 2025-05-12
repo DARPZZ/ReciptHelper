@@ -1,12 +1,23 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import ProtectedRoute from "~/modules/ProtectedRoute";
 import { SetSettings } from "~/helpers/api/reciptapi";
+import { GetSettings } from "~/helpers/api/userapi";
 function Settings() {
-const [automatiskSletning, setAutomatiksSletning] = useState(Boolean);
+let [automatiskSletning, setAutomatiksSletning] = useState(Boolean);
 const [formData, setFormData] = useState({
-    value: false,
+  value: automatiskSletning
   });
 
+async function GetSettingsValues()
+{
+  const response = await GetSettings();
+  const data = await response.json();
+  let sletAutoKvit = data["sletAutomatiskKvitteringer"];
+  setAutomatiksSletning(sletAutoKvit)
+}
+useEffect(()=>{
+  GetSettingsValues()
+},[])
 
 
 async function skiftAutomatiskSletning() {
@@ -16,7 +27,6 @@ async function skiftAutomatiskSletning() {
       });
       
     const response = await SetSettings(formData);
-    var data = await response.json();
   }
   return (
     <ProtectedRoute>
