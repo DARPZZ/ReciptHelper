@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 import SletKvitteringPåId from "./BaseRecipt";
+import {remove} from '../../modules/ReceiptTable/BaseRecipt'
 function ReceiptTableMobile({ receipts }: { receipts: any }) {
   const [correctInformation, SetcorrectInformation] = useState(false);
   useEffect(() => {
@@ -57,7 +58,7 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
             <button
               className="text-red-600"
               onClick={() => {
-                SletKvitteringPåId(reciptinterface.reciptID);
+                remove(reciptinterface)
               }}
             >
               Slet kvittering

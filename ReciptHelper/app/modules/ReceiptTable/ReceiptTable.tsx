@@ -35,9 +35,9 @@ function ReceiptTable() {
   return (
     <div className="w-full">
       <div className=" flex justify-center w-full pb-5">
-        <div className="pt-10 w-4/5">
+        <div className="pt-10 w-full md:w-4/5">
           <form
-            className="max-w-md mx-auto"
+            className="max-w mx-auto"
             onSubmit={(e) => e.preventDefault()}
           >
             <label

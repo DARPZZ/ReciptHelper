@@ -28,8 +28,7 @@ function Dashboard() {
             >
               Opret ny kvittering
             </button>
-            <div className="w-full flex  justify-center"></div>
-            <div className="pt-5">
+            <div className="pt-5 md:w-4/5">
               <ReceiptTable />
             </div>
           </div>

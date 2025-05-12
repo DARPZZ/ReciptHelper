@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
-import { SletKvit } from "~/helpers/api/reciptapi";
-import SletKvitteringPåId from './BaseRecipt'
- function ReceiptTablePc({ receipts }: { receipts: any }) {''
- async function remove(reciptinterface: reciptinterface)
-  {
-    const response = await SletKvitteringPåId(reciptinterface.reciptID);
-    if(!response.ok){
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-  }
+import {remove} from '../../modules/ReceiptTable/BaseRecipt'
+function ReceiptTablePc({ receipts }: { receipts: any }) {
   return (
-    <table id="myTable" className="w-full hidden 2xl:table table-auto   text-sm ">
+    <table
+      id="myTable"
+      className="w-full hidden 2xl:table table-auto   text-sm "
+    >
       <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
           <th scope="col" className="px-6  py-3">
@@ -78,10 +73,11 @@ import SletKvitteringPåId from './BaseRecipt'
               </th>
               <th className="px-6 py-4  text-gray-900 dark:text-white">
                 <button
-                    onClick={()=>{
-                      remove(reciptinterface)
-                    }}
-                >Slet Kvittering
+                  onClick={() => {
+                    remove(reciptinterface);
+                  }}
+                >
+                  Slet Kvittering
                 </button>
               </th>
             </tr>
