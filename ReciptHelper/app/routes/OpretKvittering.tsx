@@ -62,7 +62,7 @@ function OpretKvittering() {
         <h1 className="text-3xl md:mt-28 text-black dark:text-white  font-sans font-bold text-center mt-36">
           Her har du muligheden for at oprette en ny kvittering
         </h1>
-        <div className="flex items-center h-full w-full justify-center flex-col">
+        <div className="flex  items-center h-full w-full justify-center flex-col">
           <form
             className="text-left p-3 font-bold rounded-xl bg-slate-200 dark:bg-gray-700 dark:text-white"
             onSubmit={handleSubmit}

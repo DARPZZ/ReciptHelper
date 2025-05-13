@@ -25,7 +25,7 @@ function Navbar() {
       <div>
         {isUserLoggedIn ? (
           <button
-            className="w-1/3 px-6 py-4 text-xl font-bold "
+            className="w-1/3 px-6 py-4 text-xl font-bold  "
             onClick={() => navigate("Dashboard")}
           >
             Recipt Helper
@@ -37,6 +37,7 @@ function Navbar() {
           >
             Recipt Helper
           </button>
+          
         )}
       </div>
       <div className="items-center w-full space-x-5  justify-end flex px-6 py-4">
@@ -46,6 +47,7 @@ function Navbar() {
              className=" hover:text-gray-800"
              onClick={()=> navigate("Settings")}
              >Settings</button>
+             
             <button
               onClick={() => LogUserOut()}
               className=" hover:text-gray-800"

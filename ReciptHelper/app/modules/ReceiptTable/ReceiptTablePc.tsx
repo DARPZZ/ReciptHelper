@@ -15,6 +15,7 @@ const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
     remove(receiptToDelete);
     setToDelete(false);
     setReceiptToDelete(null);
+    
   }
 }, [toDelete, receiptToDelete]);
 

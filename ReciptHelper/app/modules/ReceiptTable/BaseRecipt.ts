@@ -16,14 +16,14 @@ export default async function SletKvitteringPåId(id:number) {
       }
 
       toast.success("Kvitteringen blev slettet", {
-        position: "bottom-right",
+        position: "top-center",
 
         autoClose: 2000,
         theme: "colored",
       });
     } catch (error: any) {
       toast.error(" Kunne ikke slette kvitteringen", {
-        position: "bottom-right",
+        position: "top-center",
         autoClose: 2000,
         theme: "colored",
       });
