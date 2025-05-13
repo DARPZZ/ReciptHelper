@@ -6,7 +6,6 @@ export default async function SletKvitteringPåId(id:number) {
     return response;
 }
 
-
  export async function remove(reciptinterface: IRecipt) {
     try {
       const response = await SletKvitteringPåId(reciptinterface.reciptID);

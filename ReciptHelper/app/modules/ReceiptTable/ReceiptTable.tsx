@@ -9,20 +9,21 @@ function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
   const [filtredReceipts, setFiltredReceipts] = useState<reciptinterface[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+
   const fetchReceipts = async () => {
     try {
-        const response = await GetReceiptByEmail();
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data: reciptinterface[] = await response.json();
-        setReceipts(data);
-        setFiltredReceipts(data);
+      const response = await GetReceiptByEmail();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data: reciptinterface[] = await response.json();
+      setReceipts(data);
+      setFiltredReceipts(data);
     } catch (error) {
       console.error("Error fetching scammers:", error);
     }
   };
-  
+
   useEffect(() => {
     const filteredrecipt = receipts.filter((receipts) =>
       receipts.produktNavn.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,13 +36,10 @@ function ReceiptTable() {
   }, []);
   return (
     <div className="w-full">
-       <ToastContainer position="bottom-right" theme="colored" />
+      <ToastContainer position="bottom-right" theme="colored" />
       <div className=" flex justify-center w-full pb-5">
         <div className="pt-10 w-full md:w-4/5">
-          <form
-            className="max-w mx-auto"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <form className="max-w mx-auto" onSubmit={(e) => e.preventDefault()}>
             <label
               form="default-search"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
