@@ -6,7 +6,7 @@ import ConformationBox from "../ConformationBox";
 type ChildComponentProps = {
   receipts: any;
 };
-const ReceiptTablePc: React.FC<ChildComponentProps> = (ChildComponentProps) => {
+const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
   const [showConfirmationBox, setShowConfirmationBox] = useState<boolean>(false);
   const [toDelete, setToDelete] = useState<boolean>(false);
   const [receiptToDelete, setReceiptToDelete] = useState<reciptinterface | null>(null);
@@ -56,8 +56,8 @@ const ReceiptTablePc: React.FC<ChildComponentProps> = (ChildComponentProps) => {
           </tr>
         </thead>
         <tbody>
-          {ChildComponentProps.receipts.length > 0 ? (
-            ChildComponentProps.receipts.map(
+          {receipts.length > 0 ? (
+            receipts.map(
               (reciptinterface: reciptinterface) => (
                 <tr
                   key={reciptinterface.reciptID}

@@ -3,11 +3,11 @@ interface comps {
   confirmationbox: any,
   okayToDelete : any
 }
-const ConformationBox: React.FC<comps> = (comps) => {
+const ConformationBox= ({confirmationbox,okayToDelete}: comps) =>{
   function deleteKvit()
   {
-    comps.confirmationbox(false);
-    comps.okayToDelete(true);
+    confirmationbox(false);
+    okayToDelete(true);
   }
   return (
     <div className="w-full">
@@ -28,7 +28,7 @@ const ConformationBox: React.FC<comps> = (comps) => {
             <div>
               <button
                 className="bg-red-600 border-4 border-black rounded-xl p-3 "
-                onClick={()=>comps.confirmationbox(false)}
+                onClick={()=>confirmationbox(false)}
               >
                 Jeg ønsker ikke at slette kvitteringen
               </button>

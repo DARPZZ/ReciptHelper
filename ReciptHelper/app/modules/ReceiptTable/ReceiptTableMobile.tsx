@@ -1,14 +1,39 @@
 import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 import SletKvitteringPåId from "./BaseRecipt";
-import {remove} from '../../modules/ReceiptTable/BaseRecipt'
-function ReceiptTableMobile({ receipts }: { receipts: any }) {
+import { remove } from "../../modules/ReceiptTable/BaseRecipt";
+import ConformationBox from "../ConformationBox";
+type ChildComponentProps = {
+  receipts: any;
+};
+function ReceiptTableMobile({ receipts }: ChildComponentProps) {
+  const [showConfirmationBox, setShowConfirmationBox] =
+    useState<boolean>(false);
+  const [toDelete, setToDelete] = useState<boolean>(false);
+  const [receiptToDelete, setReceiptToDelete] =
+    useState<reciptinterface | null>(null);
+  useEffect(() => {
+    if (toDelete && receiptToDelete) {
+      remove(receiptToDelete);
+      setToDelete(false);
+      setReceiptToDelete(null);
+    }
+  }, [toDelete, receiptToDelete]);
+
   const [correctInformation, SetcorrectInformation] = useState(false);
   useEffect(() => {
     SetcorrectInformation(receipts.length > 0);
   }, [receipts]);
   return (
     <div className="block 2xl:hidden  px-2 pt-2 overflow-y-auto">
+      {showConfirmationBox == true && (
+        <div className="z-40  flex fixed inset-0 items-center justify-center">
+          <ConformationBox
+            confirmationbox={setShowConfirmationBox}
+            okayToDelete={setToDelete}
+          />
+        </div>
+      )}
       {!correctInformation && (
         <div>
           <h1 className=" text-2xl font-bold">
@@ -58,7 +83,8 @@ function ReceiptTableMobile({ receipts }: { receipts: any }) {
             <button
               className="text-red-600"
               onClick={() => {
-                remove(reciptinterface)
+                setShowConfirmationBox(true);
+                setReceiptToDelete(reciptinterface);
               }}
             >
               Slet kvittering
