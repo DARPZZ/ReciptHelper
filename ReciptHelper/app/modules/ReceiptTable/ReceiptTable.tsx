@@ -17,8 +17,9 @@ function ReceiptTable() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data: reciptinterface[] = await response.json();
-      setReceipts(data);
-      setFiltredReceipts(data);
+      const reversedData = data.reverse();
+      setReceipts(reversedData);
+      setFiltredReceipts(reversedData);
     } catch (error) {
       console.error("Error fetching scammers:", error);
     }
