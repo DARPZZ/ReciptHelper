@@ -1,4 +1,5 @@
 import React from "react";
+import NotworkingOnIphone from "./NotworkingOnIphone";
 import { Link } from "@remix-run/react";
 function LandingPage() {
   return (
@@ -12,6 +13,9 @@ function LandingPage() {
       >
         <div className="bg-black bg-opacity-50 h-dvh">
           <div className="container mx-auto px-6 py-32 text-center">
+            <div>
+              <NotworkingOnIphone></NotworkingOnIphone>
+            </div>
             <h1 className="text-5xl font-bold text-white">
               Opbevar dine kvitteringer ét sted
             </h1>

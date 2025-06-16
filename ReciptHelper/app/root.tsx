@@ -7,7 +7,6 @@ import {
 } from "@remix-run/react";
 import Navbar from "./modules/Navbar";
 import type { LinksFunction } from "@remix-run/node";
-import { ToastContainer } from "react-toastify";
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -39,16 +38,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Navbar />
         </div>
         <main className="flex-1">{children}
-          
         </main>
- 
-       
-       
         <ScrollRestoration />
-        
         <Scripts />
-       
-
       </body>
     </html>
   );
