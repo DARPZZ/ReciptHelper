@@ -6,7 +6,7 @@ function LandingPage() {
   const [isOnIOS, setIsOnIOS] = useState(false);
   useEffect(() => {
     const agent = window.navigator.userAgent;
-    if (agent.includes("Windows") || agent.includes("iPad")) {
+    if (agent.includes("iPhone") || agent.includes("iPad")) {
       setIsOnIOS(true);
     }
   }, []);
