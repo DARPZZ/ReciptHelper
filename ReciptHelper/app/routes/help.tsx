@@ -15,12 +15,12 @@ function help() {
           </p>
           <p>3. Slå også fra: “Forhindre sporing på tværs af websteder”</p>
           <p>4. Prøv igen</p>
+          <span className="text-center justify-center items-center flex flex-col">
+            <Link className="mt-12 border w-1/2 rounded-lg py-2 " to="/">
+              Gå tilbage
+            </Link>
+          </span>
         </div>
-        <span className="text-center justify-center items-center flex flex-col">
-          <Link className="mt-12 border w-1/2 rounded-lg py-2 " to="/">
-            Gå tilbage
-          </Link>
-        </span>
       </div>
     </div>
   );
