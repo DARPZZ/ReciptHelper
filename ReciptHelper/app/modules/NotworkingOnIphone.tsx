@@ -5,7 +5,7 @@ function NotworkingOnIphone() {
   const navigate = useNavigate();
   return (
     <div className=" flex flex-col items-center">
-      <h2 className="pb-2 dark:text-white text:black">
+      <h2 className="pb-2 ">
         Vi har registreret, at du bruger iPhone eller iPad
       </h2>
       <button
