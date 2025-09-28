@@ -1,5 +1,5 @@
 import { useNavigate } from "@remix-run/react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReceiptTable from "~/modules/ReceiptTable/ReceiptTable";
 import ProtectedRoute from "~/modules/ProtectedRoute";
 import { SletKvit } from "~/helpers/api/reciptapi";
@@ -28,7 +28,7 @@ function Dashboard() {
             >
               Opret ny kvittering
             </button>
-            <div className="pt-5 md:w-4/5">
+            <div className="pt-5">
               <ReceiptTable />
             </div>
           </div>
