@@ -25,7 +25,10 @@ async function GetSettingsValues()
   setVisGamleKvitteringer(visKvit)
 }
 useEffect(()=>{
-  GetSettingsValues()
+  const fetchSettings = async () => {
+    await GetSettingsValues();
+  };
+  fetchSettings()
 },[])
 
 
