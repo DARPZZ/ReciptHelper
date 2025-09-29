@@ -10,6 +10,16 @@ export default async function GetReceiptByEmail() {
     });
     return response;
 }
+export async function GetReceiptByEmailNotOld() {
+    const response = await fetch(`${api}/recipt/get/by/email/not/old`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",
+          },
+    });
+    return response;
+}
 
 export async function CreateRecipt(formData:any) {
     const response = await fetch(`${api}/recipt/create`, {
@@ -32,6 +42,17 @@ export async function CreateRecipt(formData:any) {
   }
   export async function SetSettings(formData:any) {
     const response = await fetch(`${api}/recipt/set/sletKvitteringer?value=${formData.value}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      
+      return response
+  }
+   export async function SetSettingsForOldRecipts(formData:any) {
+    const response = await fetch(`${api}/recipt/set/updateShowOldKvitteringer?value=${formData.value}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

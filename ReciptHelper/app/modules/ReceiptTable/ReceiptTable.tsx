@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
-import GetReceiptByEmail, { sletkvitEach } from "~/helpers/api/reciptapi";
+import GetReceiptByEmail, { GetReceiptByEmailNotOld, sletkvitEach } from "~/helpers/api/reciptapi";
 import ReceiptTablePc from "./ReceiptTablePc";
 import ReceiptTableMobile from "./ReceiptTableMobile";
 import { ToastContainer } from "react-toastify";
-
+import { GetSettings } from "~/helpers/api/userapi";
 function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
   const [filtredReceipts, setFiltredReceipts] = useState<reciptinterface[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
+async function GetSettingsFirst()
+{
+  const response = await GetSettings();
+  const data = await response.json();
+  
+  let visKvit = data["showOldKvitteringer"]
+  return visKvit
+}
   const fetchReceipts = async () => {
     try {
-      const response = await GetReceiptByEmail();
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+     const response = await GetSettingsFirst() ? GetReceiptByEmail() : GetReceiptByEmailNotOld()
+      if (!(await response).ok) {
+        throw new Error(`HTTP error! status: ${(await response).status}`);
       }
-      const data: reciptinterface[] = await response.json();
-      const reversedData = data.reverse();
+      const data: reciptinterface[] = await (await response).json();
+      const reversedData = data.reverse();  
       setReceipts(reversedData);
       setFiltredReceipts(reversedData);
     } catch (error) {
