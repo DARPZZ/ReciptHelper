@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 import { remove } from "../../modules/ReceiptTable/BaseRecipt";
 import ConformationBox from "../ConformationBox";
-
+import {ReciptTablePcAdvancedTH,ReciptTableNonPcAdvancedTH} from "./ReciptTablePcTH";
 type ChildComponentProps = {
   receipts: any;
 };
@@ -64,29 +64,11 @@ const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
                   key={reciptinterface.reciptID}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 >
-                  <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                    {reciptinterface.købsDato
-                      .split("T")[0]
-                      .split("-")
-                      .reverse()
-                      .join("-")}
-                  </th>
-                  <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                    {reciptinterface.slutDato
-                      .split("T")[0]
-                      .split("-")
-                      .reverse()
-                      .join("-")}
-                  </th>
-                  <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                    {reciptinterface.produktNavn}
-                  </th>
-                  <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                    {reciptinterface.pris}
-                  </th>
-                  <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                    {reciptinterface.firma}
-                  </th>
+                  <ReciptTablePcAdvancedTH reciptinterfaceProp={reciptinterface.købsDato}></ReciptTablePcAdvancedTH>
+                  <ReciptTablePcAdvancedTH reciptinterfaceProp={reciptinterface.slutDato}></ReciptTablePcAdvancedTH>
+                  <ReciptTableNonPcAdvancedTH reciptinterfaceProp={reciptinterface.produktNavn}></ReciptTableNonPcAdvancedTH>
+                  <ReciptTableNonPcAdvancedTH reciptinterfaceProp={reciptinterface.pris}></ReciptTableNonPcAdvancedTH>
+                  <ReciptTableNonPcAdvancedTH reciptinterfaceProp={reciptinterface.firma}></ReciptTableNonPcAdvancedTH>
                   <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
                     <a
                       target="_blank"
