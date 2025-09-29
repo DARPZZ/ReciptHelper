@@ -24,18 +24,16 @@ useEffect(()=>{
   fetchSettings()
 },[])
 
-
 async function skiftAutomatiskSletning() {
   const newValue = !automatiskSletning;
   setAutomatiksSletning(newValue);
   await SetSettings({ value: newValue });
 }
 
-async function skiftVisGamleKvitteringer() {
-  const newValue = !visGamleKvitteringer;
-  setVisGamleKvitteringer(newValue);
-  await SetSettingsForOldRecipts({ value: newValue });
-}
+ async function skiftVisGamleKvitteringer(){
+    visGamleKvitteringer? setVisGamleKvitteringer(false) : setVisGamleKvitteringer(true);
+    await SetSettingsForOldRecipts(!visGamleKvitteringer);
+  }
   return (
     <ProtectedRoute>
       <div className="w-full h-full flex flex-col justify-center items-center">

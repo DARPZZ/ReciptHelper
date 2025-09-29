@@ -51,8 +51,8 @@ export async function CreateRecipt(formData:any) {
       
       return response
   }
-   export async function SetSettingsForOldRecipts(formData:any) {
-    const response = await fetch(`${api}/recipt/set/updateShowOldKvitteringer?value=${formData.value}`, {
+   export async function SetSettingsForOldRecipts(end:boolean) {
+    const response = await fetch(`${api}/recipt/set/updateShowOldKvitteringer?value=${end}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
