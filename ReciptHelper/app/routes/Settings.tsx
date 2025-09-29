@@ -5,14 +5,8 @@ import { GetSettings } from "~/helpers/api/userapi";
 import Reciptbutton from "~/modules/ReceiptTable/reciptbutton";
 
 function Settings() {
-let [automatiskSletning, setAutomatiksSletning] = useState(Boolean);
-let [visGamleKvitteringer,setVisGamleKvitteringer] = useState(Boolean)
-const [formData, setFormData] = useState({
-  value: automatiskSletning
-  });
-const [visGamleKvitteringerformData, setVisGamleKvitteringerformData] = useState({
-  value: visGamleKvitteringer
-  });
+let [automatiskSletning, setAutomatiksSletning] = useState(false);
+let [visGamleKvitteringer,setVisGamleKvitteringer] = useState(false)
 
 async function GetSettingsValues()
 {
@@ -32,21 +26,16 @@ useEffect(()=>{
 
 
 async function skiftAutomatiskSletning() {
-  automatiskSletning? setAutomatiksSletning(false) : setAutomatiksSletning(true);
-  setFormData({
-      value : automatiskSletning
-      });
-    
-    await SetSettings(formData);
-  }
-  async function skiftVisGamleKvitteringer() {
-    visGamleKvitteringer? setVisGamleKvitteringer(false) : setVisGamleKvitteringer(true);
-      setVisGamleKvitteringerformData({
-    value : visGamleKvitteringer
-    });
-    await SetSettingsForOldRecipts(visGamleKvitteringerformData);
-  }
-  
+  const newValue = !automatiskSletning;
+  setAutomatiksSletning(newValue);
+  await SetSettings({ value: newValue });
+}
+
+async function skiftVisGamleKvitteringer() {
+  const newValue = !visGamleKvitteringer;
+  setVisGamleKvitteringer(newValue);
+  await SetSettingsForOldRecipts({ value: newValue });
+}
   return (
     <ProtectedRoute>
       <div className="w-full h-full flex flex-col justify-center items-center">
