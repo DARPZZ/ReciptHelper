@@ -11,6 +11,9 @@
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc"
   },
+   "overrides": {
+    "glob": "^11.0.4"
+  },
   "dependencies": {
     "@remix-run/node": "^2.16.5",
     "@remix-run/react": "^2.16.5",
