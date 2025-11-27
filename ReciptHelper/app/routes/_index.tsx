@@ -1,9 +1,9 @@
-import Home from "~/modules/LandingPage";
+import LandingPage from "~/modules/LandingPage";
 
 export default function Index() {
   return (
     <div className=" h-full w-full">
-      <Home></Home>
+      <LandingPage></LandingPage>
     </div>
   );
 }
