@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
-import NotworkingOnIphone from "./NotworkingOnIphone";
 import { Link } from "@remix-run/react";
 
 function LandingPage() {
-  const [isOnIOS, setIsOnIOS] = useState(false);
-  useEffect(() => {
-    const agent = window.navigator.userAgent;
-    if (agent.includes("iPhone") || agent.includes("iPad")) {
-      setIsOnIOS(true);
-    }
-  }, []);
   return (
     <div className="h-full bg-gray-50">
       <section
@@ -21,11 +13,6 @@ function LandingPage() {
       >
         <div className="bg-black bg-opacity-50 h-dvh">
           <div className="container mx-auto px-6 py-32 text-center">
-            {isOnIOS && (
-              <div className="pb-9">
-                <NotworkingOnIphone></NotworkingOnIphone>
-              </div>
-            )}
             <h1 className="text-5xl font-bold text-white">
               Opbevar dine kvitteringer ét sted
             </h1>
