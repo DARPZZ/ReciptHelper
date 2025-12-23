@@ -21,6 +21,17 @@ export async function GetReceiptByEmailNotOld() {
     return response;
 }
 
+export async function GetAllProductPrices() {
+    const response = await fetch(`${api}/recipt/get/product/prices`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",
+          },
+    });
+    return response;
+}
+
 export async function CreateRecipt(formData:any) {
     const response = await fetch(`${api}/recipt/create`, {
         method: "POST",
