@@ -17,7 +17,7 @@ function StatsCard({ title, value }: StatsProps) {
       </p>
 
       <h2 className="text-4xl font-bold text-white mt-2">
-        <CountUp to={value} from={0}delay={0.4} duration={1}></CountUp>
+        <CountUp to={value} from={0}delay={0.4} duration={0.4}></CountUp>
       </h2>
     </div>
   );

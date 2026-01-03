@@ -52,15 +52,13 @@ async function GetAllProductsPrice() {
             >
               Opret ny kvittering
             </button>
-            <div className=" text-center grid grid-cols-2 w-11/12 pt-5">
+            <div className="  text-center grid  sm:grid-cols-2 w-4/5 pt-5">
               <div className="px-14">
                 <StatsCard title="Total pris for alle genstande" value={combinedPrices}></StatsCard>
               </div>
-               <div>
-              <StatsCard title="Antal af kvitteringer" value={numberOfRecipts}></StatsCard>
+               <div className="px-14 md:mt-0 mt-2">
+                <StatsCard title="Antal af kvitteringer" value={numberOfRecipts}></StatsCard>
               </div>  
-
-
             </div>
             <div className="pt-5">
               <ReceiptTable />
