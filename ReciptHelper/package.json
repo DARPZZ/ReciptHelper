@@ -15,9 +15,9 @@
     "glob": "^11.0.4"
   },
   "dependencies": {
-    "@remix-run/node": "^2.16.5",
+    "@remix-run/node": "^2.17.3",
     "@remix-run/react": "^2.16.5",
-    "@remix-run/serve": "^2.16.5",
+    "@remix-run/serve": "^2.17.3",
     "isbot": "^4.1.0",
     "motion": "^12.23.26",
     "react": "^18.2.0",
