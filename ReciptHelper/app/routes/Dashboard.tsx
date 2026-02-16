@@ -32,7 +32,8 @@ async function GetAllProductsPrice() {
   const json = await apiData.json();
   const total = getCombinedPrices(json);
   setCombinedPrices(total);
-  setNumberOfRecipts(json.length)
+  json.lenght === undefined ? setNumberOfRecipts(0) : setNumberOfRecipts(json.length)
+ 
   
 }
 
@@ -60,7 +61,7 @@ async function GetAllProductsPrice() {
                 <StatsCard title="Antal af kvitteringer" value={numberOfRecipts}></StatsCard>
               </div>  
             </div>
-            <div className="pt-5">
+            <div className="pt-5 px-12 w-full">
               <ReceiptTable />
             </div>
           </div>

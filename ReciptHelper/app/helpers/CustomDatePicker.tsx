@@ -5,7 +5,10 @@ interface CustomDatePickerProps {
   setSelectedDate: (date: string) => void;
 }
 
-const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ selectedDate, setSelectedDate }) => {
+const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
+  selectedDate,
+  setSelectedDate,
+}) => {
   return (
     <div className="w-full">
       <input

@@ -12,8 +12,9 @@ function Navbar() {
   });
   function GetCurrentPath() {
     const currentPath = window.location.pathname;
-    currentPath == "/ReciptHelper/" ? setIsOnRootPath(true) : setIsOnRootPath(false);
-    
+    currentPath == "/ReciptHelper/"
+      ? setIsOnRootPath(true)
+      : setIsOnRootPath(false);
   }
 
   function LogUserOut() {
@@ -37,17 +38,18 @@ function Navbar() {
           >
             Recipt Helper
           </button>
-          
         )}
       </div>
       <div className="items-center w-full space-x-5  justify-end flex px-6 py-4">
         {isUserLoggedIn ? (
           <div className="space-x-5 flex flex-row">
             <button
-             className=" hover:text-gray-800"
-             onClick={()=> navigate("Settings")}
-             >Settings</button>
-             
+              className=" hover:text-gray-800"
+              onClick={() => navigate("Settings")}
+            >
+              Settings
+            </button>
+
             <button
               onClick={() => LogUserOut()}
               className=" hover:text-gray-800"
@@ -65,7 +67,7 @@ function Navbar() {
         )}
         {isOnRootPath == true && (
           <div className="space-x-5 flex flex-row">
-             <button
+            <button
               onClick={() => scrollToID("Features")}
               className=" hover:text-gray-800"
             >
@@ -77,7 +79,6 @@ function Navbar() {
             >
               About
             </button>
-           
           </div>
         )}
       </div>
