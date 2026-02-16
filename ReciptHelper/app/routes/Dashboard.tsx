@@ -2,7 +2,7 @@ import { useNavigate } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import ReceiptTable from "~/modules/ReceiptTable/ReceiptTable";
 import ProtectedRoute from "~/modules/ProtectedRoute";
-import { SletKvit,GetAllProductPrices } from "~/helpers/api/reciptapi";
+import { SletKvit, GetAllProductPrices } from "~/helpers/api/reciptapi";
 import StatsCard from "~/modules/StatsCard";
 
 import api from "~/helpers/api";
@@ -10,32 +10,36 @@ import { list } from "postcss";
 import { number } from "motion";
 function Dashboard() {
   const [combinedPrices, setCombinedPrices] = useState(0);
-  const [numberOfRecipts,setNumberOfRecipts] = useState(0);
+  const [numberOfRecipts, setNumberOfRecipts] = useState(0);
   const [formData, setFormData] = useState({
     email: "",
   });
   const navigate = useNavigate();
   useEffect(() => {
-    GetAllProductsPrice()
+    GetAllProductsPrice();
     SletKvit();
-  },[]);
-function getCombinedPrices(json:any){
-  let fullPrice = 0
-  for (let index = 0; index < json.length; index++) {
-    const element = json[index];
-    fullPrice = fullPrice + element
+  }, []);
+  function getCombinedPrices(json: any) {
+    let fullPrice = 0;
+    for (let index = 0; index < json.length; index++) {
+      const element = json[index];
+      fullPrice = fullPrice + element;
+    }
+    return fullPrice;
   }
-  return fullPrice
-}
-async function GetAllProductsPrice() {
-  const apiData = await GetAllProductPrices();
-  const json = await apiData.json();
-  const total = getCombinedPrices(json);
-  setCombinedPrices(total);
-  json.lenght === undefined ? setNumberOfRecipts(0) : setNumberOfRecipts(json.length)
- 
-  
-}
+  async function GetAllProductsPrice() {
+    const apiData = await GetAllProductPrices();
+    const json = await apiData.json();
+    const total = getCombinedPrices(json);
+    setCombinedPrices(total);
+    var jsonMessage = (json.message);
+    if (jsonMessage.includes("No receipt found")) {
+      setNumberOfRecipts(0);
+      
+    }else{
+      setNumberOfRecipts(json.length);
+    }
+  }
 
   return (
     <ProtectedRoute>
@@ -55,11 +59,17 @@ async function GetAllProductsPrice() {
             </button>
             <div className="  text-center grid  sm:grid-cols-2 w-4/5 pt-5">
               <div className="px-14">
-                <StatsCard title="Total pris for alle genstande" value={combinedPrices}></StatsCard>
+                <StatsCard
+                  title="Total pris for alle genstande"
+                  value={combinedPrices}
+                ></StatsCard>
               </div>
-               <div className="px-14 md:mt-0 mt-2">
-                <StatsCard title="Antal af kvitteringer" value={numberOfRecipts}></StatsCard>
-              </div>  
+              <div className="px-14 md:mt-0 mt-2">
+                <StatsCard
+                  title="Antal af kvitteringer"
+                  value={numberOfRecipts}
+                ></StatsCard>
+              </div>
             </div>
             <div className="pt-5 px-12 w-full">
               <ReceiptTable />
