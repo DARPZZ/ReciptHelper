@@ -25,8 +25,9 @@ function Dashboard() {
     const apiData = await GetAllProductPrices();
     const json = await apiData.json();
     const total = getCombinedPrices(json);
-    setCombinedPrices(total);
-    setNumberOfRecipts(json.length || 0)
+    const formattedTotal = Number(total).toLocaleString("dk-DK");
+    setCombinedPrices(parseFloat(formattedTotal));
+    setNumberOfRecipts(json.length || 0);
   }
 
   return (
