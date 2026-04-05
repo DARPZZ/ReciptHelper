@@ -4,3 +4,27 @@ updates:
     directory: "/ReciptHelper"
     schedule:
       interval: "weekly"
+
+    target-branch: "patches"
+
+    open-pull-requests-limit: 10
+
+    labels:
+      - "dependencies"
+
+    commit-message:
+      prefix: "deps"
+
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+      major:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
