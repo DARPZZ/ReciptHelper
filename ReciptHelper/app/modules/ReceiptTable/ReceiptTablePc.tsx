@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 import { remove } from "../../modules/ReceiptTable/BaseRecipt";
 import ConformationBox from "../ConformationBox";
-import {
-  ReciptTablePcAdvancedTH,
-  ReciptTableNonPcAdvancedTH,
-} from "./ReciptTablePcTH";
 type ChildComponentProps = {
   receipts: any;
 };
@@ -33,96 +29,109 @@ const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
           />
         </div>
       )}
-
-      <table
-        id="myTable"
-        className="w-full hidden 2xl:table table-auto   text-sm "
-      >
-        <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6  py-3">
-              Købs Dato
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Slut dato
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Produkt Navn
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Pris
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Firma
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email Link
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Slet Kvittering
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {receipts.length > 0 ? (
-            receipts.map((reciptinterface: reciptinterface) => (
-              <tr
-                key={reciptinterface.reciptID}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-              >
-                <ReciptTablePcAdvancedTH
-                  reciptinterfaceProp={reciptinterface.købsDato}
-                ></ReciptTablePcAdvancedTH>
-                <ReciptTablePcAdvancedTH
-                  reciptinterfaceProp={reciptinterface.slutDato}
-                ></ReciptTablePcAdvancedTH>
-                <ReciptTableNonPcAdvancedTH
-                  reciptinterfaceProp={reciptinterface.produktNavn}
-                ></ReciptTableNonPcAdvancedTH>
-                <ReciptTableNonPcAdvancedTH
-                  reciptinterfaceProp={reciptinterface.pris}
-                ></ReciptTableNonPcAdvancedTH>
-                <ReciptTableNonPcAdvancedTH
-                  reciptinterfaceProp={reciptinterface.firma}
-                ></ReciptTableNonPcAdvancedTH>
-                <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                  {reciptinterface.emailLink.length > 0 ? (
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={reciptinterface.emailLink}
-                    >
-                      Se Kvittering
-                    </a>
-                  ) : (
-                    ""
-                  )}
-                </th>
-
-                <th className="px-6 py-4  text-gray-900 dark:text-white">
-                  <button
-                    onClick={() => {
-                      setShowConfirmationBox(true);
-                      setReceiptToDelete(reciptinterface);
-                    }}
-                  >
-                    Slet Kvittering
-                  </button>
-                </th>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td
-                colSpan={4}
-                className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
-              >
-                Vi har ikke nogle kviteringer til dig.
-              </td>
+      <div className="hidden 2xl:block w-full overflow-hidden bg-white dark:bg-gray-950 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <table
+          id="myTable"
+          className="w-full text-left border-separate border-spacing-0"
+        >
+          <thead>
+            <tr className="bg-gray-50/50 dark:bg-gray-900/50">
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
+                Købs Dato
+              </th>
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
+                Slut Dato
+              </th>
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
+                Produkt
+              </th>
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
+                Pris
+              </th>
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
+                Firma
+              </th>
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
+                Link
+              </th>
+              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800 text-right">
+                Handling
+              </th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-gray-50 dark:divide-gray-900">
+            {receipts.length > 0 ? (
+              receipts.map((receipt: any) => (
+                <tr
+                  key={receipt.reciptID}
+                  className="group hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-all duration-200"
+                >
+                  <td className="px-8 py-6 text-sm text-gray-500 dark:text-gray-400">
+                    {new Date(receipt.købsDato).toLocaleDateString("da-DK", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </td>
+                  <td className="px-8 py-6 text-sm text-gray-500 dark:text-gray-400">
+                    {new Date(receipt.slutDato).toLocaleDateString("da-DK", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </td>
+                  <td className="px-8 py-6">
+                    <span className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">
+                      {receipt.produktNavn}
+                    </span>
+                  </td>
+                  <td className="px-8 py-6 text-sm font-mono font-medium text-gray-600 dark:text-gray-300">
+                    {Number(receipt.pris).toLocaleString("da-DK")} DKK
+                  </td>
+                  <td className="px-8 py-6 text-sm text-gray-500 dark:text-gray-400">
+                    {receipt.firma}
+                  </td>
+                  <td className="px-8 py-6">
+                    {receipt.emailLink ? (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={receipt.emailLink}
+                        className="inline-flex text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 decoration-2"
+                      >
+                        Åbn kvittering
+                      </a>
+                    ) : (
+                      <span className="text-gray-300 dark:text-gray-700">
+                        —
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-8 py-6 text-right">
+                    <button
+                      onClick={() => {
+                        setShowConfirmationBox(true);
+                        setReceiptToDelete(receipt);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                    >
+                      Slet
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={7} className="px-8 py-20 text-center">
+                  <p className="text-sm font-medium text-gray-400 dark:text-gray-500 italic">
+                    Ingen kvitteringer fundet i arkivet.
+                  </p>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -82,7 +82,7 @@ function ReceiptTable() {
                   type="search"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full p-4 ps-10 text-sm border text-white placeholder:text-white bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 rounded-lg"
+                  className="w-full p-4 ps-10 text-sm border text-white placeholder:text-white rounded-lg"
                   placeholder="Søg efter et produkt"
                   required
                 />

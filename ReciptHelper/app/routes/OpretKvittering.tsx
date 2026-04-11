@@ -32,7 +32,7 @@ function OpretKvittering() {
       date.setFullYear(date.getFullYear() + 2);
       const formattedDate = `${String(date.getFullYear()).padStart(
         2,
-        "0"
+        "0",
       )}-${String(date.getMonth() + 1).padStart(2, "0")}-${date.getDate()}`;
       formData.slutDato = formattedDate;
 
@@ -52,94 +52,123 @@ function OpretKvittering() {
     const date = new Date(selectedDate);
     date.setFullYear(date.getFullYear() + 2);
     const formattedDate = `${String(date.getDate()).padStart(2, "0")}-${String(
-      date.getMonth() + 1
+      date.getMonth() + 1,
     ).padStart(2, "0")}-${date.getFullYear()}`;
     return formattedDate;
   };
   return (
     <ProtectedRoute>
-      <div className="flex  bg-white dark:bg-gray-950 flex-col h-full w-full">
-        <h1 className="text-3xl md:mt-28 text-black dark:text-white  font-sans font-bold text-center mt-36">
-          Her har du muligheden for at oprette en ny kvittering
-        </h1>
-        <div className="flex  items-center h-full w-full justify-center flex-col">
-          <form
-            className="text-left p-3 font-bold rounded-xl bg-slate-200 dark:bg-gray-700 dark:text-white"
-            onSubmit={handleSubmit}
-          >
-            <div className="flex flex-row gap-x-8">
-              <div className="flex flex-col">
-                <section className="pb-6">
-                  <h1>Købs dato</h1>
-                  <CustomDatePicker
-                    selectedDate={selectedDate}
-                    setSelectedDate={setSelectedDate}
-                  />
-                </section>
-                <section className="pb-6">
-                  <h1>Sidste reklamentaion</h1>
-                  <input
-                    type="text"
-                    readOnly
-                    name="slutDato"
-                    id="slutDato"
-                    value={getDatePlusTwoYears()}
-                    onChange={handleChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  />
-                </section>
-                <section className="pb-6">
-                  <h1>Link til emailen</h1>
-                  <input
-                    type="url"
-                    name="emailLink"
-                    id="emailLink"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onChange={handleChange}
-                  />
-                </section>
-              </div>
-              <div>
-                <section className="pb-6">
-                  <h1>Produktets navn</h1>
-                  <input
-                    type="text"
-                    name="produktNavn"
-                    id="produktNavn"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onChange={handleChange}
-                  />
-                </section>
-                <section className="pb-6">
-                  <h1>Pris</h1>
-                  <input
-                    type="number"
-                    name="pris"
-                    id="pris"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onChange={handleChange}
-                  />
-                </section>
-                <section className="pb-6">
-                  <h1>Firma navn</h1>
-                  <input
-                    type="text"
-                    name="firmaNavnToCheck"
-                    id="firmaNavnToCheck"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onChange={handleChange}
-                  />
-                </section>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-16 px-4 font-sans antialiased">
+        <div className="max-w-3xl mx-auto">
+          {/* Header - Enkel og fokuseret */}
+          <header className="mb-12 text-center md:text-left">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
+              Ny kvittering
+            </h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-2">
+              Indtast oplysningerne fra dit køb for at arkivere dokumentationen.
+            </p>
+          </header>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Hovedkortet */}
+            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-100 dark:divide-gray-800">
+                {/* Venstre side: Købsinfo */}
+                <div className="p-8 space-y-6">
+                  <h2 className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+                    Købsdetaljer
+                  </h2>
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        Købsdato
+                      </label>
+                      <CustomDatePicker
+                        selectedDate={selectedDate}
+                        setSelectedDate={setSelectedDate}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        Reklamationsfrist
+                      </label>
+                      <input
+                        type="text"
+                        readOnly
+                        value={getDatePlusTwoYears()}
+                        className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 text-sm cursor-not-allowed"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        Link til e-mail
+                      </label>
+                      <input
+                        type="url"
+                        placeholder="https://..."
+                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="p-8 space-y-6">
+                  <h2 className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                    Produktinfo
+                  </h2>
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        Produktnavn
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="f.eks. MacBook Pro"
+                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        Pris (DKK)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="0,00"
+                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                        Firma / Butik
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Hvor er det købt?"
+                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <section>
+            <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                className="w-full justify-center items-center flex font-bold text-white text-xl hover:bg-green-800 h-10 bg-green-600  rounded-xl "
+                className="w-full md:w-auto px-12 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl hover:bg-black dark:hover:bg-gray-100 transition-colors shadow-lg active:scale-95"
               >
-                Opret kvittering
+                Gem kvittering
               </button>
-            </section>
+            </div>
           </form>
         </div>
       </div>
