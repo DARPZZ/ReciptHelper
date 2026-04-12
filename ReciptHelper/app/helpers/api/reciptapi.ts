@@ -21,8 +21,8 @@ export async function GetReceiptByEmailNotOld() {
   return response;
 }
 
-export async function GetAllProductPrices() {
-  const response = await fetch(`${api}/recipt/get/product/prices`, {
+export async function GetAllProductPrices(howMany:string) {
+  const response = await fetch(`${api}/recipt/get/product/prices?howMany=${howMany}`, {
     method: "GET",
     credentials: "include",
     headers: {
