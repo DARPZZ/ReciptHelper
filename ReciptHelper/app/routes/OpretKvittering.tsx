@@ -35,8 +35,9 @@ function OpretKvittering() {
         "0",
       )}-${String(date.getMonth() + 1).padStart(2, "0")}-${date.getDate()}`;
       formData.slutDato = formattedDate;
-
+      console.log(formData);
       const response = await CreateRecipt(formData);
+      console.log(response.json);
       if (response.ok) {
         navigate("/Dashboard");
       }
@@ -98,6 +99,7 @@ function OpretKvittering() {
                       <input
                         type="text"
                         readOnly
+                        name="slutDato"
                         value={getDatePlusTwoYears()}
                         className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 text-sm cursor-not-allowed"
                       />
@@ -109,6 +111,7 @@ function OpretKvittering() {
                       </label>
                       <input
                         type="url"
+                        name="emailLink"
                         placeholder="https://..."
                         className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
                         onChange={handleChange}
@@ -128,6 +131,7 @@ function OpretKvittering() {
                       </label>
                       <input
                         type="text"
+                        name="produktNavn"
                         placeholder="f.eks. MacBook Pro"
                         className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
                         onChange={handleChange}
@@ -140,6 +144,7 @@ function OpretKvittering() {
                       </label>
                       <input
                         type="number"
+                        name="pris"
                         placeholder="0,00"
                         className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
                         onChange={handleChange}
@@ -151,6 +156,7 @@ function OpretKvittering() {
                         Firma / Butik
                       </label>
                       <input
+                        name="firmaNavnToCheck"
                         type="text"
                         placeholder="Hvor er det købt?"
                         className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
