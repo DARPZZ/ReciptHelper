@@ -4,7 +4,7 @@ import ReceiptTable from "~/modules/ReceiptTable/ReceiptTable";
 import ProtectedRoute from "~/modules/ProtectedRoute";
 import { SletKvit, GetAllProductPrices } from "~/helpers/api/reciptapi";
 import StatsCard from "~/modules/StatsCard";
-
+import { GetSettings } from "~/helpers/api/userapi";
 function Dashboard() {
   const [combinedPrices, setCombinedPrices] = useState(0);
   const [numberOfRecipts, setNumberOfRecipts] = useState(0);
@@ -22,7 +22,18 @@ function Dashboard() {
     return fullPrice;
   }
   async function GetAllProductsPrice() {
-    const apiData = await GetAllProductPrices();
+    const response = await GetSettings();
+    const data = await response.json();
+    let apiData;
+    let visKvit = data["showOldKvitteringer"];
+    console.log(visKvit)
+    if(visKvit === true)
+    {
+      apiData = await GetAllProductPrices("all");
+    }else{
+      apiData = await GetAllProductPrices("notold");
+    }
+    // let 
     const json = await apiData.json();
     const total = getCombinedPrices(json);
     const formattedTotal = Number(total).toLocaleString("dk-DK");
@@ -32,35 +43,51 @@ function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="w-full h-full mt-24 md:mt-16">
-        <div className=" flex justify-center">
-          <div className=" w-full items-center flex flex-col">
-            <h1 className="text-2xl font-bold pb-5 font-serif">
-              Mine kviteringer
-            </h1>
+      <div className="w-full min-h-screen bg-gray-50 dark:bg-gray-900 pt-24 md:pt-16 pb-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between border-b border-gray-200 dark:border-gray-700 pb-6 mb-8">
+            <div>
+              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                Mine kvitteringer
+              </h1>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                Administrer og få overblik over dine køb
+              </p>
+            </div>
 
             <button
               type="button"
-              className="  items-center px-5 py-2.5 md:w-1/3 w-1/2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="mt-4 md:mt-0 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               onClick={() => navigate("/OpretKvittering")}
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
               Opret ny kvittering
             </button>
-            <div className="  text-center grid  sm:grid-cols-2 w-4/5 pt-5">
-              <div className="px-14">
-                <StatsCard
-                  title="Total pris for alle genstande"
-                  value={combinedPrices}
-                ></StatsCard>
-              </div>
-              <div className="px-14 md:mt-0 mt-2">
-                <StatsCard
-                  title="Antal af kvitteringer"
-                  value={numberOfRecipts}
-                ></StatsCard>
-              </div>
-            </div>
-            <div className="pt-5 px-12 w-full">
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+            <StatsCard
+              title="Total pris for alle genstande"
+              value={combinedPrices}
+            />
+            <StatsCard title="Antal af kvitteringer" value={numberOfRecipts} />
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+            <div className="p-1">
               <ReceiptTable />
             </div>
           </div>
