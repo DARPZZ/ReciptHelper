@@ -20,9 +20,12 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: ReciptHelper/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ./ReciptHelper
 
       - name: Build project
+        working-directory: ./ReciptHelper
         run: npm run build
