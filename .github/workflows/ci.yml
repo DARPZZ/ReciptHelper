@@ -27,4 +27,5 @@ jobs:
         working-directory: ./ReciptHelper
 
       - name: Build project
+        working-directory: ./ReciptHelper
         run: npm run build
