@@ -1,52 +1,55 @@
-import React from "react";
 interface comps {
-  confirmationbox: any;
-  okayToDelete: any;
+  confirmationbox: (visible: boolean) => void;
+  okayToDelete: (deleteReceipt: boolean) => void;
 }
+
 const ConformationBox = ({ confirmationbox, okayToDelete }: comps) => {
   function deleteKvit() {
     confirmationbox(false);
     okayToDelete(true);
   }
+
   return (
-    <div className="w-full">
-      <div className="flex flex-col items-center justify-center">
-        <div className=" md:w-3/4 w-4/5 bg-slate-400 rounded-xl md:h-80 h-96 bg-opacity-80 flex flex-col items-center justify-center">
-          <h1 className="text-black  font-bold text-2xl pb-10">
-            Er du sikker på, at du ønsker at slette denne kvittering?
-          </h1>
-          <div className=" text-xl font-bold grid md:grid-cols-2 grid-cols-1 space-y-5 md:space-x-10 md:space-y-0  px-2">
-            <div>
-              <button
-                onClick={() => deleteKvit()}
-                className="relative group w-full p-4 rounded-2xl bg-green-600 text-white font-semibold text-lg overflow-hidden border-4 border-black transition-all duration-300 ease-in-out 
-             hover:scale-110 hover:bg-green-500 hover:border-green-700 shadow-md hover:shadow-xl"
-              >
-                <span
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 via-green-500 to-blue-600 
-                   transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out opacity-50"
-                ></span>
-                <span className="relative z-10">
-                  🗑️ Jeg ønsker at slette kvitteringen
-                </span>
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => confirmationbox(false)}
-                className="relative group w-full p-4 rounded-2xl bg-red-600 text-white font-semibold text-lg overflow-hidden border-4 border-black transition-all duration-300 ease-in-out 
-             hover:scale-110 hover:bg-red-500 hover:border-red-700 shadow-md hover:shadow-xl"
-              >
-                <span
-                  className="absolute inset-0 bg-gradient-to-r from-purple-600 via-red-500 to-purple-600 
-                   transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out opacity-50"
-                ></span>
-                <span className="relative z-10">
-                  🚫 Nej tak, behold kvitteringen
-                </span>
-              </button>
-            </div>
-          </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 px-4 backdrop-blur-sm">
+      <div className="w-full max-w-md rounded-2xl border border-white/70 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.8}
+              d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+            />
+          </svg>
+        </div>
+        <h1 className="mt-5 text-xl font-black tracking-tight text-slate-950 dark:text-white">
+          Slet kvittering?
+        </h1>
+        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+          Er du sikker på, at du ønsker at slette denne kvittering? Handlingen
+          kan ikke fortrydes.
+        </p>
+        <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <button
+            type="button"
+            onClick={() => confirmationbox(false)}
+            className="secondary-button"
+          >
+            Behold
+          </button>
+          <button
+            type="button"
+            onClick={() => deleteKvit()}
+            className="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-600/20 active:scale-[0.98]"
+          >
+            Slet kvittering
+          </button>
         </div>
       </div>
     </div>

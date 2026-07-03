@@ -1,58 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "@remix-run/react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "@remix-run/react";
 import { scrollToID } from "~/helpers/scroll";
+
 function Navbar() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOnRootPath, setIsOnRootPath] = useState(true);
+
   useEffect(() => {
-    let email = sessionStorage.getItem("login");
-    email != null ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false);
-    GetCurrentPath();
-  });
-  function GetCurrentPath() {
-    const currentPath = window.location.pathname;
-    currentPath == "/ReciptHelper/"
-      ? setIsOnRootPath(true)
-      : setIsOnRootPath(false);
-  }
+    const email = sessionStorage.getItem("login");
+    setIsUserLoggedIn(email != null);
+    setIsOnRootPath(location.pathname == "/" || location.pathname == "/ReciptHelper/");
+  }, [location.pathname]);
 
   function LogUserOut() {
     sessionStorage.removeItem("login");
     navigate("/");
   }
-  return (
-    <div className="grid font-bold w-full text-xl fixed z-50   grid-cols-2 bg-gradient-to-r text-white from-blue-600 via-green-500 to-indigo-400  ">
-      <div>
-        {isUserLoggedIn ? (
-          <button
-            className="w-1/3 px-6 py-4 text-xl font-bold  "
-            onClick={() => navigate("Dashboard")}
-          >
-            Recipt Helper
-          </button>
-        ) : (
-          <button
-            className="w-1/3 px-6 py-4 text-xl font-bold "
-            onClick={() => navigate("/")}
-          >
-            Recipt Helper
-          </button>
-        )}
-      </div>
-      <div className="items-center w-full space-x-5  justify-end flex px-6 py-4">
-        {isUserLoggedIn ? (
-          <div className="space-x-5 flex flex-row">
-            <button
-              className=" hover:text-gray-800"
-              onClick={() => navigate("Settings")}
-            >
-              Settings
-            </button>
 
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/70 bg-white/80 backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/75">
+      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+        <button
+          className="group inline-flex items-center gap-3 text-left"
+          onClick={() => navigate(isUserLoggedIn ? "/Dashboard" : "/")}
+        >
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-sm font-black text-white shadow-sm dark:bg-white dark:text-slate-950">
+            RH
+          </span>
+          <span>
+            <span className="block text-sm font-extrabold tracking-tight text-slate-950 dark:text-white">
+              Recipt Helper
+            </span>
+            <span className="hidden text-xs font-medium text-slate-500 sm:block">
+              Digitalt kvitteringsarkiv
+            </span>
+          </span>
+        </button>
+
+        <div className="flex items-center gap-1 sm:gap-2">
+          {isOnRootPath == true && (
+            <div className="hidden items-center gap-1 sm:flex">
+              <button
+                onClick={() => scrollToID("Features")}
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              >
+                Funktioner
+              </button>
+              <button
+                onClick={() => scrollToID("About")}
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              >
+                Om
+              </button>
+            </div>
+          )}
+
+        {isUserLoggedIn ? (
+          <div className="flex items-center gap-1 sm:gap-2">
+            <button
+              className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              onClick={() => navigate("/Settings")}
+            >
+              Indstillinger
+            </button>
             <button
               onClick={() => LogUserOut()}
-              className=" hover:text-gray-800"
+              className="secondary-button px-4 py-2"
             >
               Logud
             </button>
@@ -60,29 +75,14 @@ function Navbar() {
         ) : (
           <button
             onClick={() => navigate("/Login")}
-            className=" hover:text-gray-800"
+            className="primary-button px-4 py-2"
           >
             Login
           </button>
         )}
-        {isOnRootPath == true && (
-          <div className="space-x-5 flex flex-row">
-            <button
-              onClick={() => scrollToID("Features")}
-              className=" hover:text-gray-800"
-            >
-              Features
-            </button>
-            <button
-              onClick={() => scrollToID("About")}
-              className=" hover:text-gray-800"
-            >
-              About
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+      </nav>
+    </header>
   );
 }
 

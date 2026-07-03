@@ -3,6 +3,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import CustomDatePicker from "~/helpers/CustomDatePicker";
 import { CreateRecipt } from "~/helpers/api/reciptapi";
 import ProtectedRoute from "~/modules/ProtectedRoute";
+
 function OpretKvittering() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -33,11 +34,11 @@ function OpretKvittering() {
       const formattedDate = `${String(date.getFullYear()).padStart(
         2,
         "0",
-      )}-${String(date.getMonth() + 1).padStart(2, "0")}-${date.getDate()}`;
+      )}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+        date.getDate(),
+      ).padStart(2, "0")}`;
       formData.slutDato = formattedDate;
-      console.log(formData);
       const response = await CreateRecipt(formData);
-      console.log(response.json);
       if (response.ok) {
         navigate("/Dashboard");
       }
@@ -57,121 +58,124 @@ function OpretKvittering() {
     ).padStart(2, "0")}-${date.getFullYear()}`;
     return formattedDate;
   };
+
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-16 px-4 font-sans antialiased">
-        <div className="max-w-3xl mx-auto">
-          {/* Header - Enkel og fokuseret */}
-          <header className="mb-12 text-center md:text-left">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
+      <div className="app-page">
+        <div className="mx-auto w-full max-w-3xl">
+          <header className="mb-8">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+              Nyt arkivpunkt
+            </p>
+            <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 dark:text-white">
               Ny kvittering
             </h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">
-              Indtast oplysningerne fra dit køb for at arkivere dokumentationen.
+            <p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+              Indtast oplysningerne fra dit køb for at gemme dokumentationen.
             </p>
           </header>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Hovedkortet */}
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-100 dark:divide-gray-800">
-                {/* Venstre side: Købsinfo */}
-                <div className="p-8 space-y-6">
-                  <h2 className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+            <div className="panel overflow-hidden">
+              <div className="grid grid-cols-1 divide-y divide-slate-200 md:grid-cols-2 md:divide-x md:divide-y-0 dark:divide-slate-800">
+                <div className="space-y-5 p-6 sm:p-8">
+                  <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
                     Købsdetaljer
                   </h2>
 
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                        Købsdato
-                      </label>
-                      <CustomDatePicker
-                        selectedDate={selectedDate}
-                        setSelectedDate={setSelectedDate}
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                      Købsdato
+                    </label>
+                    <CustomDatePicker
+                      selectedDate={selectedDate}
+                      setSelectedDate={setSelectedDate}
+                    />
+                  </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                        Reklamationsfrist
-                      </label>
-                      <input
-                        type="text"
-                        readOnly
-                        name="slutDato"
-                        value={getDatePlusTwoYears()}
-                        className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 text-sm cursor-not-allowed"
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                      Reklamationsfrist
+                    </label>
+                    <input
+                      type="text"
+                      readOnly
+                      name="slutDato"
+                      value={getDatePlusTwoYears()}
+                      className="form-input cursor-not-allowed bg-slate-50 text-slate-500 dark:bg-slate-900 dark:text-slate-400"
+                    />
+                  </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                        Link til e-mail
-                      </label>
-                      <input
-                        type="url"
-                        name="emailLink"
-                        placeholder="https://..."
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
-                        onChange={handleChange}
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                      Link til e-mail
+                    </label>
+                    <input
+                      type="url"
+                      name="emailLink"
+                      placeholder="https://..."
+                      className="form-input"
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
-                <div className="p-8 space-y-6">
-                  <h2 className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+
+                <div className="space-y-5 p-6 sm:p-8">
+                  <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
                     Produktinfo
                   </h2>
 
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                        Produktnavn
-                      </label>
-                      <input
-                        type="text"
-                        name="produktNavn"
-                        placeholder="f.eks. MacBook Pro"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
-                        onChange={handleChange}
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                      Produktnavn
+                    </label>
+                    <input
+                      type="text"
+                      name="produktNavn"
+                      placeholder="f.eks. MacBook Pro"
+                      className="form-input"
+                      onChange={handleChange}
+                    />
+                  </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                        Pris (DKK)
-                      </label>
-                      <input
-                        type="number"
-                        name="pris"
-                        placeholder="0,00"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
-                        onChange={handleChange}
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                      Pris (DKK)
+                    </label>
+                    <input
+                      type="number"
+                      name="pris"
+                      placeholder="0,00"
+                      className="form-input"
+                      onChange={handleChange}
+                    />
+                  </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                        Firma / Butik
-                      </label>
-                      <input
-                        name="firmaNavnToCheck"
-                        type="text"
-                        placeholder="Hvor er det købt?"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all text-sm dark:text-white"
-                        onChange={handleChange}
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                      Firma / butik
+                    </label>
+                    <input
+                      name="firmaNavnToCheck"
+                      type="text"
+                      placeholder="Hvor er det købt?"
+                      className="form-input"
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex justify-end pt-4">
+
+            <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <button
-                type="submit"
-                className="w-full md:w-auto px-12 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl hover:bg-black dark:hover:bg-gray-100 transition-colors shadow-lg active:scale-95"
+                type="button"
+                className="secondary-button"
+                onClick={() => navigate("/Dashboard")}
               >
+                Annuller
+              </button>
+              <button type="submit" className="primary-button">
                 Gem kvittering
               </button>
             </div>

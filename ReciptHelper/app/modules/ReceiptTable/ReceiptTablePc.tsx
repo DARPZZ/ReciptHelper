@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 import { remove } from "../../modules/ReceiptTable/BaseRecipt";
 import ConformationBox from "../ConformationBox";
+
 type ChildComponentProps = {
-  receipts: any;
+  receipts: reciptinterface[];
 };
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString("da-DK", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
 const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
   const [showConfirmationBox, setShowConfirmationBox] =
     useState<boolean>(false);
   const [toDelete, setToDelete] = useState<boolean>(false);
   const [receiptToDelete, setReceiptToDelete] =
     useState<reciptinterface | null>(null);
+
   useEffect(() => {
     if (toDelete && receiptToDelete) {
       remove(receiptToDelete);
@@ -22,98 +32,74 @@ const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
   return (
     <div>
       {showConfirmationBox == true && (
-        <div className="z-40  flex fixed inset-0 items-center justify-center">
-          <ConformationBox
-            confirmationbox={setShowConfirmationBox}
-            okayToDelete={setToDelete}
-          />
-        </div>
+        <ConformationBox
+          confirmationbox={setShowConfirmationBox}
+          okayToDelete={setToDelete}
+        />
       )}
-      <div className="hidden 2xl:block w-full overflow-hidden bg-white dark:bg-gray-950 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+      <div className="hidden w-full overflow-x-auto 2xl:block">
         <table
           id="myTable"
-          className="w-full text-left border-separate border-spacing-0"
+          className="w-full min-w-[980px] text-left text-sm"
         >
           <thead>
-            <tr className="bg-gray-50/50 dark:bg-gray-900/50">
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
-                Købs Dato
-              </th>
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
-                Slut Dato
-              </th>
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
-                Produkt
-              </th>
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
-                Pris
-              </th>
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
-                Firma
-              </th>
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800">
-                Link
-              </th>
-              <th className="px-8 py-5 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800 text-right">
-                Handling
-              </th>
+            <tr className="bg-slate-50 text-xs font-bold uppercase tracking-[0.16em] text-slate-500 dark:bg-slate-900/70 dark:text-slate-400">
+              <th className="px-6 py-4">Købsdato</th>
+              <th className="px-6 py-4">Slutdato</th>
+              <th className="px-6 py-4">Produkt</th>
+              <th className="px-6 py-4">Pris</th>
+              <th className="px-6 py-4">Firma</th>
+              <th className="px-6 py-4">Link</th>
+              <th className="px-6 py-4 text-right">Handling</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-50 dark:divide-gray-900">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
             {receipts.length > 0 ? (
-              receipts.map((receipt: any) => (
+              receipts.map((receipt) => (
                 <tr
                   key={receipt.reciptID}
-                  className="group hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-all duration-200"
+                  className="group transition hover:bg-slate-50/80 dark:hover:bg-slate-800/40"
                 >
-                  <td className="px-8 py-6 text-sm text-gray-500 dark:text-gray-400">
-                    {new Date(receipt.købsDato).toLocaleDateString("da-DK", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
+                  <td className="px-6 py-5 text-slate-500 dark:text-slate-400">
+                    {formatDate(receipt.købsDato)}
                   </td>
-                  <td className="px-8 py-6 text-sm text-gray-500 dark:text-gray-400">
-                    {new Date(receipt.slutDato).toLocaleDateString("da-DK", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
+                  <td className="px-6 py-5 text-slate-500 dark:text-slate-400">
+                    {formatDate(receipt.slutDato)}
                   </td>
-                  <td className="px-8 py-6">
-                    <span className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">
+                  <td className="px-6 py-5">
+                    <span className="font-bold text-slate-950 dark:text-white">
                       {receipt.produktNavn}
                     </span>
                   </td>
-                  <td className="px-8 py-6 text-sm font-mono font-medium text-gray-600 dark:text-gray-300">
+                  <td className="px-6 py-5 font-mono font-semibold text-slate-700 dark:text-slate-200">
                     {Number(receipt.pris).toLocaleString("da-DK")} DKK
                   </td>
-                  <td className="px-8 py-6 text-sm text-gray-500 dark:text-gray-400">
+                  <td className="px-6 py-5 text-slate-500 dark:text-slate-400">
                     {receipt.firma}
                   </td>
-                  <td className="px-8 py-6">
+                  <td className="px-6 py-5">
                     {receipt.emailLink ? (
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
                         href={receipt.emailLink}
-                        className="inline-flex text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 decoration-2"
+                        className="font-semibold text-blue-700 transition hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-200"
                       >
                         Åbn kvittering
                       </a>
                     ) : (
-                      <span className="text-gray-300 dark:text-gray-700">
-                        —
+                      <span className="text-slate-300 dark:text-slate-700">
+                        -
                       </span>
                     )}
                   </td>
-                  <td className="px-8 py-6 text-right">
+                  <td className="px-6 py-5 text-right">
                     <button
                       onClick={() => {
                         setShowConfirmationBox(true);
                         setReceiptToDelete(receipt);
                       }}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                      className="rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-red-600 opacity-0 transition hover:bg-red-50 hover:text-red-700 group-hover:opacity-100 dark:text-red-300 dark:hover:bg-red-500/10"
                     >
                       Slet
                     </button>
@@ -122,8 +108,8 @@ const ReceiptTablePc = ({ receipts }: ChildComponentProps) => {
               ))
             ) : (
               <tr>
-                <td colSpan={7} className="px-8 py-20 text-center">
-                  <p className="text-sm font-medium text-gray-400 dark:text-gray-500 italic">
+                <td colSpan={7} className="px-6 py-16 text-center">
+                  <p className="text-sm font-semibold text-slate-400 dark:text-slate-500">
                     Ingen kvitteringer fundet i arkivet.
                   </p>
                 </td>
