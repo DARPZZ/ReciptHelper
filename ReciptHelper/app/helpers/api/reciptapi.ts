@@ -103,3 +103,17 @@ export async function sletkvitEach(id: any) {
   );
   return response;
 }
+export async function getReceiptByIndex(offset:any,showOld:any) {
+   const response = await fetch(
+    `${api}/recipt/get/kvitteringer/?offset=${offset}&showold=${showOld}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    },
+  );
+  return response;
+}
+

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import reciptinterface from "../../interfaces/reciptinterface";
 import GetReceiptByEmail, {
   GetReceiptByEmailNotOld,
+  getReceiptByIndex,
 } from "~/helpers/api/reciptapi";
 import ReceiptTablePc from "./ReceiptTablePc";
 import ReceiptTableMobile from "./ReceiptTableMobile";
@@ -12,6 +13,7 @@ function ReceiptTable() {
   const [receipts, setReceipts] = useState<reciptinterface[]>([]);
   const [filtredReceipts, setFiltredReceipts] = useState<reciptinterface[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [offset, setOffset] = useState(0);
 
   async function GetSettingsFirst() {
     const response = await GetSettings();
@@ -24,8 +26,8 @@ function ReceiptTable() {
   const fetchReceipts = async () => {
     try {
       const response = (await GetSettingsFirst())
-        ? GetReceiptByEmail()
-        : GetReceiptByEmailNotOld();
+        ? getReceiptByIndex(offset, true)
+        : getReceiptByIndex(offset, false);
       if (!(await response).ok) {
         throw new Error(`HTTP error! status: ${(await response).status}`);
       }
@@ -47,10 +49,24 @@ function ReceiptTable() {
 
   useEffect(() => {
     fetchReceipts();
-  }, []);
+  }, [offset]);
 
   return (
     <div className="w-full">
+      <div className="w-full flex gap-10 justify-center items-center pt-2">
+        <button
+          onClick={() => setOffset(Math.max(0, offset - 6))}
+          className="secondary-button"
+        >
+          Forige
+        </button>
+        <button
+          onClick={() => setOffset(offset + 6)}
+          className="secondary-button"
+        >
+          Næste
+        </button>
+      </div>
       <ToastContainer position="bottom-right" theme="colored" />
       <div className="border-b border-slate-200 p-5 dark:border-slate-800 sm:p-6">
         <form onSubmit={(e) => e.preventDefault()}>
