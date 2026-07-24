@@ -4,9 +4,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from "react-router";
 import Navbar from "./modules/Navbar";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from "react-router";
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [

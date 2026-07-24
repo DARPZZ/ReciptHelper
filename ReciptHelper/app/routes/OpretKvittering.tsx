@@ -1,4 +1,4 @@
-import { useNavigate } from "@remix-run/react";
+import { useNavigate } from "react-router";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import CustomDatePicker from "~/helpers/CustomDatePicker";
 import { CreateRecipt } from "~/helpers/api/reciptapi";

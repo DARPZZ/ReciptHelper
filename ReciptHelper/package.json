@@ -5,30 +5,29 @@
   "homepage": "htpps://DARPZZ.github.io/ReciptHelper/",
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
-    "dev": "remix vite:dev",
+    "build": "react-router build",
+    "dev": "react-router dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "start": "vite preview --outDir build/client",
+    "typecheck": "react-router typegen && tsc"
   },
   "overrides": {
     "glob": "^11.0.4",
     "tar": ">=7.5.11"
   },
   "dependencies": {
-    "@remix-run/node": "^2.17.5",
-    "@remix-run/react": "^2.17.5",
-    "@remix-run/router": "^1.23.3",
-    "@remix-run/serve": "^2.17.5",
-    "estree-util-value-to-estree": "^3.5.0",
+    "@react-router/node": "^7.18.1",
     "isbot": "^5.2.1",
     "motion": "^12.42.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-router": "^7.18.1",
     "react-toastify": "^11.1.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.17.5",
+    "@react-router/dev": "^7.18.1",
+    "@react-router/fs-routes": "^7.18.1",
+    "@types/node": "^22.18.0",
     "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
